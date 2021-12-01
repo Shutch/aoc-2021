@@ -34,32 +34,50 @@ int partone () {
 }
 
 int parttwo () {
-    // open input file
-    FILE *fp = fopen("input.txt", "r");
-    if (!fp) {
-        fprintf(stderr, "Error opening input.txt");
+    // open input file twice
+    char *filename;
+    filename = "input.txt";
+
+    FILE *fp1 = fopen(filename, "r");
+    if (!fp1) {
+        fprintf(stderr, "Error opening %s once\n", filename);
+        return -1;
+    }
+    FILE *fp2 = fopen(filename, "r");
+    if (!fp2) {
+        fprintf(stderr, "Error opening %s twice\n", filename);
         return -1;
     }
 
-    // get first line
+    // get first line and fourth line
     char buffer[64];
     int BUFFER_SIZE = 64;
-    int lastwin[3], currwin[3];
+    int lastval, currval;
     int incs = 0;
 
-    // reading first line
-    fgets(buffer, BUFFER_SIZE, fp);
+    fgets(buffer, BUFFER_SIZE, fp1);
     lastval = atoi(buffer);
-    while (fgets(buffer, BUFFER_SIZE, fp) != NULL) {
-        currval = atoi(buffer);
+    fgets(buffer, BUFFER_SIZE, fp2);
+    fgets(buffer, BUFFER_SIZE, fp2);
+    fgets(buffer, BUFFER_SIZE, fp2);
+    fgets(buffer, BUFFER_SIZE, fp2);
+    currval = atoi(buffer);
+    while (fgets(buffer, BUFFER_SIZE, fp2) != NULL) {
         if (currval > lastval) {
             incs++;
         }
-        lastval = currval;
+        currval = atoi(buffer);
+        fgets(buffer, BUFFER_SIZE, fp1);
+        lastval = atoi(buffer);
+    }
+    // last check
+    if (currval > lastval) {
+        incs++;
     }
 
-    // close file
-    fclose(fp);
+    // close files
+    fclose(fp1);
+    fclose(fp2);
 
     return incs;
 }
