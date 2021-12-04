@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int partone () {
+int partone (char *filename) {
     int ans = -1;
-    char *filename;
-    filename = "test.txt";
 
     // open input file
     FILE *fp = fopen(filename, "r");
@@ -21,10 +19,8 @@ int partone () {
     return ans;
 }
 
-int parttwo () {
+int parttwo (char *filename) {
     int ans = -1;
-    char *filename;
-    filename = "test.txt";
 
     // open input file
     FILE *fp = fopen(filename, "r");
@@ -41,9 +37,20 @@ int parttwo () {
     return ans;
 }
 
-int main () {
-    int p1 = partone();
+int main( int argc, char *argv[] ) {
+    char *filename;
+    if( argc == 2) {
+        filename = argv[1];
+    }
+    else if( argc > 2) {
+        fprintf(stderr, "Too many arguments");
+        return (-1);
+    }
+    else {
+        filename = "input.txt";
+    }
+    int p1 = partone(filename);
     printf("Part 1: %d\n", p1);
-    int p2 = parttwo();
+    int p2 = parttwo(filename);
     printf("Part 2: %d\n", p2);
 }

@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-lm -g -I.
 
 make: main.o
-	$(CC) -o main.out main.o
+	$(CC) $(CFLAGS) -o main.out main.o
