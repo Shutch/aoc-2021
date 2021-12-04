@@ -4,7 +4,7 @@
 int partone () {
     int ans = -1;
     char *filename;
-    filename = "input.txt";
+    filename = "test.txt";
 
     // open input file
     FILE *fp = fopen(filename, "r");
@@ -24,7 +24,7 @@ int partone () {
 int parttwo () {
     int ans = -1;
     char *filename;
-    filename = "input.txt";
+    filename = "test.txt";
 
     // open input file
     FILE *fp = fopen(filename, "r");
