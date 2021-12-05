@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "helpers.h"
 
 int partone (char *filename) {
     int ans = -1;
@@ -12,6 +13,7 @@ int partone (char *filename) {
     }
 
     // read file
+
 
     // close file
     fclose(fp);
@@ -47,7 +49,7 @@ int main( int argc, char *argv[] ) {
         return (-1);
     }
     else {
-        filename = "input.txt";
+        filename = "test.txt";
     }
     int p1 = partone(filename);
     printf("Part 1: %d\n", p1);
