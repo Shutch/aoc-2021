@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include <limits.h>
+#include <time.h>
 #include "helpers.h"
 
 int partone (char *filename) {
@@ -126,8 +127,14 @@ int main( int argc, char *argv[] ) {
     else {
         filename = "test.txt";
     }
+    
+    clock_t start = clock();
+
     int p1 = partone(filename);
-    printf("Part 1: %d\n", p1);
+    clock_t p1time = clock();
+    printf("Part 1 (%lf): %d\n", (double)(p1time - start) / CLOCKS_PER_SEC, p1);
+
     int p2 = parttwo(filename);
-    printf("Part 2: %d\n", p2);
+    clock_t p2time = clock();
+    printf("Part 2: (%lf): %d\n", (double)(p2time - start) / CLOCKS_PER_SEC, p2);
 }
