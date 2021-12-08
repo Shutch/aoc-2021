@@ -66,7 +66,7 @@ int parttwo (char *filename) {
     while(( fgets(line, linesize, fp)) != NULL ) {
         int segmentmapping[7] = { };
         int digitmapping[10] = { };
-        char strings[10][7] = { };
+        char strings[10][8] = { };
         int scrambledsums[10] = { };
         int lettersums[10] = { };
         int lettersum = 0;
@@ -74,6 +74,7 @@ int parttwo (char *filename) {
         int fivecount = 0;
         int sixes[3];
         int sixcount = 0;
+
         first = strtok(line, "|");
         second = strtok(NULL, "|");
 
@@ -207,22 +208,34 @@ int parttwo (char *filename) {
         // Applying the solution to the 4 7segs at the end
         int segmentsvalue = 0;
         entry = strtok(second, " \n\r\t");
-        printf("%s: ", entry);
+        //printf("%s: ", entry);
+        // starts at first digit (1000s place)
         for( int j = 1000; j != 0; j = j / 10 ) {
-            int lettersum = 0;
-            for( int k = 0; k < strlen(entry); k++ ) {
-                lettersum += entry[k];
-            }
-            for( int k = 0; k < 10; k++ ) {
-                if( lettersum == lettersums[k] ) {
-                    segmentsvalue += k * j;
-                    break;
+            // comparing each character in the solution digit to the original digits
+            // can't use lettersums here as there can be duplicates
+            // Then map the scrambled digit index to the digitmapping index to find the value.
+            for( int si = 0; si < 10; si++ ) {  // original list of digits
+                //printf("%s: %lu, %s %lu\n", strings[si], strlen(strings[si]), entry, strlen(entry));
+                if( strlen(strings[si]) == strlen(entry) ) {
+                    for( int ei = 0; ei < strlen(entry); ei++ ) { // iterating though entry chars
+                        if( strchr( strings[si], entry[ei] ) == NULL ) { goto NEXTITER; } // skip to next original value
+                    }
+                    // all digits match, save and skip to next entry
+                    // The index of the digitmapping array is the actual value of the digit
+                    for( int di = 0; di < 10; di++ ) {
+                        if( digitmapping[di] == si ) {
+                            segmentsvalue += j * di;
+                            goto NEXTENTRY;
+                        }
+                    }
                 }
+                NEXTITER: ;
             }
+            NEXTENTRY: ;
             //printf("%s, %d, %d\n", entry, j, segmentsvalue);
             entry = strtok(NULL, " \n\r\t");
         }
-        printf("%d\n", segmentsvalue);
+        //printf("%d\n", segmentsvalue);
         ans += segmentsvalue;
     }
 
