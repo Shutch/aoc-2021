@@ -57,40 +57,23 @@ int parttwo (char *filename) {
     // read file
     int linesize = 1000;
     char line[linesize];
-    char *token;
     char *first;
     char *second;
     char *entry;
-    int scrambled[10];
-    int lengths[10];
-    int mappings[7];
-    int letters[10];
-    int lettersum = 0;
     int l;
-    int fives[3];
-    int fivecount = 0;
-    int sixes[3];
-    int sixcount = 0;
-    int perms[6][3] = {{1, 2, 3},
-                       {1, 3, 2},
-                       {2, 1, 3},
-                       {2, 3, 1},
-                       {3, 1, 2},
-                       {3, 2, 1}};
 
-    // 0 through 9, contains which segments are 'on' for each digit
-    int digits[10][7] = {{0, 1, 2, 4, 5, 6},
-                         {3, 5},
-                         {0, 2, 4, 6},
-                         {0, 2, 3, 4, 6},
-                         {1, 2, 3, 5},
-                         {0, 1, 3, 5, 6},
-                         {0, 1, 3, 4, 5, 6},
-                         {0, 2, 5},
-                         {0, 1, 2, 3, 4, 5, 6},
-                         {0, 1, 2, 3, 5, 6}};
 
     while(( fgets(line, linesize, fp)) != NULL ) {
+        int segmentmapping[7] = { };
+        int digitmapping[10] = { };
+        char strings[10][7] = { };
+        int scrambledsums[10] = { };
+        int lettersums[10] = { };
+        int lettersum = 0;
+        int fives[3];
+        int fivecount = 0;
+        int sixes[3];
+        int sixcount = 0;
         first = strtok(line, "|");
         second = strtok(NULL, "|");
 
@@ -100,54 +83,153 @@ int parttwo (char *filename) {
             l = strlen(entry);
             for( int j = 0; j < l; j++ ) {
                 // a = 97, g = 103
-                lettersum += entry[j] - 97;
+                lettersum += entry[j];
             }
-            // letters[10], 0 through 9
-            // Categorizing letters
-            if( l == 2 ) { letters[1] = lettersum; }
-            else if( l == 3 ) { letters[7] = lettersum; }
-            else if( l == 4 ) { letters[4] = lettersum; }
-            else if( l == 7 ) { letters[8] = lettersum; }
-            else if( l == 5 ) { fives[fivecount] = i; fivecount++; } 
-            else if( l == 6 ) { sixes[sixcount] = i;  sixcount++;
-            }
+            // Categorizing digits by number of segments
+            // printf("%s %d", entry, l);
+            switch(l) {
+                case 2:
+                    lettersums[1] = lettersum;
+                    digitmapping[1] = i;
+                    break;
+                case 3:
+                    lettersums[7] = lettersum;
+                    digitmapping[7] = i;
+                    break;
+                case 4:
+                    lettersums[4] = lettersum;
+                    digitmapping[4] = i;
+                    break;
+                case 7:
+                    lettersums[8] = lettersum;
+                    digitmapping[8] = i;
+                    break;
+                case 5:
+                    fives[fivecount] = i;
+                    fivecount++;
+                    break;
+                case 6:
+                    sixes[sixcount] = i;
+                    sixcount++;
+                    break;
 
+            }
             // displays[10], a = 0, g = 6
-            scrambled[i] = lettersum;
-            lengths[i] = l;
-            printf("%d: %s, %d\n", i, entry, lettersum);
+            scrambledsums[i] = lettersum;
+            strcpy(strings[i], entry);
+            //printf("%d: %s, %d\n", i, entry, lettersum);
             entry = strtok(NULL, " \n\r\t");
         }
-        // mapping[7], 0 = A, 6 = G
+        // segmentmapping[7], 0 = a, 6 = g, maps ideal segments to actual segments, ascii values 97 to 103
+        // digitmapping[10], 0 = 0, 10 = 10 maps digits to order of scrambled digits provided
         // 1, 4, 7, 8 are known
-        // working through every permutation of 5 and 6 segment letters
-        // Determining if it's a match or not
-        // for fives: 0=2, 1=3, 2=5
-        // for sixes: 0=0, 1=6, 2=9
-        // Need a matching of actual segments [a-g] to ideal segments [a-g]
-        mappings[0] = letters[7] - letters[1];
-        for( int fi = 0; fi < 6; fi++ ) {
-            for( int si = 0; si < 6; si++ ) {
-                for( int fj = 0; fj < 3; fj++ ) {
-                    
-                }
-                for( int sj = 0; sj < 3; sj++ ) {
 
-                }
-                // goto SKIPPERM;
+        // 6 = 6 digit that doesn't contain '1' segments
+        for( int si = 0; si < 3; si++ ) {
+            if( (strchr(strings[sixes[si]], strings[digitmapping[1]][0]) == NULL) ||
+                (strchr(strings[sixes[si]], strings[digitmapping[1]][1]) == NULL) ) {
+                    digitmapping[6] = sixes[si];
+                    lettersums[6] = scrambledsums[sixes[si]];
+                    break;
             }
         }
+
+        // 9 = 6 digit that contains '4' segments
+        for( int si = 0; si < 3; si++ ) {
+            if( (strchr(strings[sixes[si]], strings[digitmapping[4]][0]) != NULL) && 
+                (strchr(strings[sixes[si]], strings[digitmapping[4]][1]) != NULL) &&
+                (strchr(strings[sixes[si]], strings[digitmapping[4]][2]) != NULL) &&
+                (strchr(strings[sixes[si]], strings[digitmapping[4]][3]) != NULL) ) {
+                    digitmapping[9] = sixes[si];
+                    lettersums[9] = scrambledsums[sixes[si]];
+                    break;
+            }
+        }
+
+        // 0 = remaining 6 digit (not 6 or 9)
+        for( int si = 0; si < 3; si++ ) {
+            if( sixes[si] != digitmapping[9] && sixes[si] != digitmapping[6] ) {
+                digitmapping[0] = sixes[si];
+                lettersums[0] = scrambledsums[sixes[si]];
+                break;
+            }
+        }
+
+        // 3 = 5 digit that contains '1' segments
+        for( int fi = 0; fi < 3; fi++ ) {
+            if( (strchr(strings[fives[fi]], strings[digitmapping[1]][0]) != NULL) && 
+                (strchr(strings[fives[fi]], strings[digitmapping[1]][1]) != NULL) ) {
+                    digitmapping[3] = fives[fi];
+                    lettersums[3] = scrambledsums[fives[fi]];
+                    break;
+            }
+        }
+
+        // A = 7-1
+        segmentmapping[0] = lettersums[7] - lettersums[1];
+
+        // C = 8 - 6
+        segmentmapping[2] = lettersums[8] - lettersums[6];
+
+        // F = 1 - C
+        segmentmapping[5] = lettersums[1] - segmentmapping[2];
+
+        // E = 8 - 9
+        segmentmapping[4] = lettersums[8] - lettersums[9];
+
+        // D = 8 - 0
+        segmentmapping[3] = lettersums[8] - lettersums[0];
+
+        // 5 = 8 - C - E
+        for( int j = 0; j < 10; j++ ) {
+            int sum = lettersums[8] - segmentmapping[2] - segmentmapping[4];
+            if( scrambledsums[j] == sum ) {
+                digitmapping[5] = j;
+                lettersums[5] = scrambledsums[j];
+            }
+        }
+
+        // 2 = remaining 5 digit (not 3 or 5)
+        for( int fi = 0; fi < 3; fi++ ) {
+            if( fives[fi] != digitmapping[3] && fives[fi] != digitmapping[5] ) {
+                digitmapping[2] = fives[fi];
+                lettersums[2] = scrambledsums[fives[fi]];
+                break;
+            }
+        }
+
+        // G = 2 - A - C - D - E
+        segmentmapping[6] = lettersums[2] - segmentmapping[0] - segmentmapping[2] - segmentmapping[3] - segmentmapping[4];
+
+        // B = 5 - A - D - F - G
+        segmentmapping[1] = lettersums[5] - segmentmapping[0] - segmentmapping[3] - segmentmapping[5] - segmentmapping[6];
+
+        // Applying the solution to the 4 7segs at the end
+        int segmentsvalue = 0;
         entry = strtok(second, " \n\r\t");
-        while( entry != NULL ) { 
-            // printf("%s\n", entry);
+        printf("%s: ", entry);
+        for( int j = 1000; j != 0; j = j / 10 ) {
+            int lettersum = 0;
+            for( int k = 0; k < strlen(entry); k++ ) {
+                lettersum += entry[k];
+            }
+            for( int k = 0; k < 10; k++ ) {
+                if( lettersum == lettersums[k] ) {
+                    segmentsvalue += k * j;
+                    break;
+                }
+            }
+            //printf("%s, %d, %d\n", entry, j, segmentsvalue);
             entry = strtok(NULL, " \n\r\t");
         }
+        printf("%d\n", segmentsvalue);
+        ans += segmentsvalue;
     }
 
     // close file
     fclose(fp);
 
-    return ans;
+    return ans + 1; // for the initial offset of -1
 }
 
 int main( int argc, char *argv[] ) {
