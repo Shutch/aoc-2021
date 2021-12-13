@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -lm -g
-CFILE := $(wildcard *.c)
+CFILES := $(wildcard *.c)
 
 make: main.o
-	$(CC) $(CFLAGS) -o main.o main.c helpers.c
+	$(CC) $(CFLAGS) -o main.o $(CFILES)
