@@ -1,0 +1,963 @@
+Parsing packet ver 0, type 0 @ 6
+Starting Sum: @ 6
+Starting Array 1: num 53 @ 18
+Parsing packet ver 7, type 0 @ 24
+Starting Sum: @ 24
+Starting Array 1: num 4 @ 36
+Parsing packet ver 6, type 4 @ 42
+Starting Literal @ 42
+Literal Complete: val 208850619 @ 77
+Parsing packet ver 3, type 4 @ 83
+Starting Literal @ 83
+Literal Complete: val 57 @ 93
+Parsing packet ver 5, type 4 @ 99
+Starting Literal @ 99
+Literal Complete: val 515 @ 114
+Parsing packet ver 1, type 4 @ 120
+Starting Literal @ 120
+Literal Complete: val 977 @ 135
+Array Complete 1: num 4 @ 135
+Sum Complete: val 208852168 @ 135
+Parsing packet ver 4, type 1 @ 141
+Starting Product: @ 141
+Starting Array 0: len 80 @ 157
+Parsing packet ver 6, type 4 @ 163
+Starting Literal @ 163
+Literal Complete: val 95 @ 173
+Parsing packet ver 5, type 4 @ 179
+Starting Literal @ 179
+Literal Complete: val 252 @ 189
+Parsing packet ver 0, type 4 @ 195
+Starting Literal @ 195
+Literal Complete: val 38 @ 205
+Parsing packet ver 5, type 4 @ 211
+Starting Literal @ 211
+Literal Complete: val 44 @ 221
+Parsing packet ver 1, type 4 @ 227
+Starting Literal @ 227
+Literal Complete: val 214 @ 237
+Array Complete 0: len 80 @ 237
+Product Complete: val 8565923520 @ 237
+Parsing packet ver 2, type 1 @ 243
+Starting Product: @ 243
+Starting Array 1: num 2 @ 255
+Parsing packet ver 1, type 7 @ 261
+Starting EQ: @ 273
+Parsing packet ver 0, type 4 @ 279
+Starting Literal @ 279
+Literal Complete: val 124 @ 289
+Parsing packet ver 3, type 4 @ 295
+Starting Literal @ 295
+Literal Complete: val 124 @ 305
+EQ Complete: val 1 @ 305
+Parsing packet ver 2, type 4 @ 311
+Starting Literal @ 311
+Literal Complete: val 86 @ 321
+Array Complete 1: num 2 @ 321
+Product Complete: val 86 @ 321
+Parsing packet ver 5, type 3 @ 327
+Starting Max: @ 327
+Starting Array 0: len 57 @ 343
+Parsing packet ver 5, type 4 @ 349
+Starting Literal @ 349
+Literal Complete: val 27002 @ 369
+Parsing packet ver 3, type 4 @ 375
+Starting Literal @ 375
+Literal Complete: val 702791 @ 400
+Array Complete 0: len 57 @ 400
+Max Complete: val 702791 @ 400
+Parsing packet ver 7, type 4 @ 406
+Starting Literal @ 406
+Literal Complete: val 37850 @ 426
+Parsing packet ver 0, type 4 @ 432
+Starting Literal @ 432
+Literal Complete: val 13 @ 437
+Parsing packet ver 1, type 1 @ 443
+Starting Product: @ 443
+Starting Array 0: len 91 @ 459
+Parsing packet ver 1, type 4 @ 465
+Starting Literal @ 465
+Literal Complete: val 765329 @ 490
+Parsing packet ver 1, type 6 @ 496
+Starting LT: @ 508
+Parsing packet ver 1, type 4 @ 514
+Starting Literal @ 514
+Literal Complete: val 1989 @ 529
+Parsing packet ver 4, type 4 @ 535
+Starting Literal @ 535
+Literal Complete: val 369 @ 550
+LT Complete: val 0 @ 550
+Array Complete 0: len 91 @ 550
+Product Complete: val 0 @ 550
+Parsing packet ver 1, type 1 @ 556
+Starting Product: @ 556
+Starting Array 0: len 65 @ 572
+Parsing packet ver 1, type 4 @ 578
+Starting Literal @ 578
+Literal Complete: val 158 @ 588
+Parsing packet ver 5, type 5 @ 594
+Starting GT: @ 610
+Parsing packet ver 0, type 4 @ 616
+Starting Literal @ 616
+Literal Complete: val 14 @ 621
+Parsing packet ver 5, type 4 @ 627
+Starting Literal @ 627
+Literal Complete: val 126 @ 637
+GT Complete: val 0 @ 637
+Array Complete 0: len 65 @ 637
+Product Complete: val 0 @ 637
+Parsing packet ver 5, type 4 @ 643
+Starting Literal @ 643
+Literal Complete: val 54 @ 653
+Parsing packet ver 5, type 1 @ 659
+Starting Product: @ 659
+Starting Array 1: num 2 @ 671
+Parsing packet ver 4, type 5 @ 677
+Starting GT: @ 689
+Parsing packet ver 1, type 4 @ 695
+Starting Literal @ 695
+Literal Complete: val 3929 @ 710
+Parsing packet ver 7, type 4 @ 716
+Starting Literal @ 716
+Literal Complete: val 439903 @ 741
+GT Complete: val 0 @ 741
+Parsing packet ver 3, type 4 @ 747
+Starting Literal @ 747
+Literal Complete: val 12054210 @ 777
+Array Complete 1: num 2 @ 777
+Product Complete: val 0 @ 777
+Parsing packet ver 5, type 1 @ 783
+Starting Product: @ 783
+Starting Array 1: num 2 @ 795
+Parsing packet ver 2, type 6 @ 801
+Starting LT: @ 817
+Parsing packet ver 2, type 4 @ 823
+Starting Literal @ 823
+Literal Complete: val 38440 @ 843
+Parsing packet ver 3, type 4 @ 849
+Starting Literal @ 849
+Literal Complete: val 1269796512 @ 889
+LT Complete: val 1 @ 889
+Parsing packet ver 6, type 4 @ 895
+Starting Literal @ 895
+Literal Complete: val 59459 @ 915
+Array Complete 1: num 2 @ 915
+Product Complete: val 59459 @ 915
+Parsing packet ver 6, type 0 @ 921
+Starting Sum: @ 921
+Starting Array 0: len 110 @ 937
+Parsing packet ver 0, type 4 @ 943
+Starting Literal @ 943
+Literal Complete: val 129 @ 953
+Parsing packet ver 7, type 4 @ 959
+Starting Literal @ 959
+Literal Complete: val 1780 @ 974
+Parsing packet ver 4, type 4 @ 980
+Starting Literal @ 980
+Literal Complete: val 276704 @ 1005
+Parsing packet ver 4, type 4 @ 1011
+Starting Literal @ 1011
+Literal Complete: val 24232 @ 1031
+Parsing packet ver 4, type 4 @ 1037
+Starting Literal @ 1037
+Literal Complete: val 104 @ 1047
+Array Complete 0: len 110 @ 1047
+Sum Complete: val 302949 @ 1047
+Parsing packet ver 6, type 3 @ 1053
+Starting Max: @ 1053
+Starting Array 0: len 99 @ 1069
+Parsing packet ver 4, type 4 @ 1075
+Starting Literal @ 1075
+Literal Complete: val 5618319 @ 1105
+Parsing packet ver 3, type 4 @ 1111
+Starting Literal @ 1111
+Literal Complete: val 5 @ 1116
+Parsing packet ver 5, type 4 @ 1122
+Starting Literal @ 1122
+Literal Complete: val 151086 @ 1147
+Parsing packet ver 0, type 4 @ 1153
+Starting Literal @ 1153
+Literal Complete: val 3666 @ 1168
+Array Complete 0: len 99 @ 1168
+Max Complete: val 5618319 @ 1168
+Parsing packet ver 3, type 1 @ 1174
+Starting Product: @ 1174
+Starting Array 0: len 32 @ 1190
+Parsing packet ver 4, type 4 @ 1196
+Starting Literal @ 1196
+Literal Complete: val 35 @ 1206
+Parsing packet ver 6, type 4 @ 1212
+Starting Literal @ 1212
+Literal Complete: val 99 @ 1222
+Array Complete 0: len 32 @ 1222
+Product Complete: val 3465 @ 1222
+Parsing packet ver 7, type 1 @ 1228
+Starting Product: @ 1228
+Starting Array 1: num 2 @ 1240
+Parsing packet ver 5, type 4 @ 1246
+Starting Literal @ 1246
+Literal Complete: val 111 @ 1256
+Parsing packet ver 6, type 6 @ 1262
+Starting LT: @ 1274
+Parsing packet ver 2, type 4 @ 1280
+Starting Literal @ 1280
+Literal Complete: val -1479169986 @ 1320
+Parsing packet ver 1, type 4 @ 1326
+Starting Literal @ 1326
+Literal Complete: val 1309 @ 1341
+LT Complete: val 0 @ 1341
+Array Complete 1: num 2 @ 1341
+Product Complete: val 0 @ 1341
+Parsing packet ver 5, type 1 @ 1347
+Starting Product: @ 1347
+Starting Array 1: num 2 @ 1359
+Parsing packet ver 5, type 4 @ 1365
+Starting Literal @ 1365
+Literal Complete: val 80261471 @ 1400
+Parsing packet ver 7, type 5 @ 1406
+Starting GT: @ 1418
+Parsing packet ver 4, type 0 @ 1424
+Starting Sum: @ 1424
+Starting Array 1: num 3 @ 1436
+Parsing packet ver 3, type 4 @ 1442
+Starting Literal @ 1442
+Literal Complete: val 13 @ 1447
+Parsing packet ver 6, type 4 @ 1453
+Starting Literal @ 1453
+Literal Complete: val 4 @ 1458
+Parsing packet ver 5, type 4 @ 1464
+Starting Literal @ 1464
+Literal Complete: val 3 @ 1469
+Array Complete 1: num 3 @ 1469
+Sum Complete: val 20 @ 1469
+Parsing packet ver 1, type 0 @ 1475
+Starting Sum: @ 1475
+Starting Array 0: len 33 @ 1491
+Parsing packet ver 2, type 4 @ 1497
+Starting Literal @ 1497
+Literal Complete: val 13 @ 1502
+Parsing packet ver 7, type 4 @ 1508
+Starting Literal @ 1508
+Literal Complete: val 7 @ 1513
+Parsing packet ver 1, type 4 @ 1519
+Starting Literal @ 1519
+Literal Complete: val 4 @ 1524
+Array Complete 0: len 33 @ 1524
+Sum Complete: val 24 @ 1524
+GT Complete: val 0 @ 1524
+Array Complete 1: num 2 @ 1524
+Product Complete: val 0 @ 1524
+Parsing packet ver 4, type 4 @ 1530
+Starting Literal @ 1530
+Literal Complete: val 7 @ 1535
+Parsing packet ver 5, type 4 @ 1541
+Starting Literal @ 1541
+Literal Complete: val 978276 @ 1566
+Parsing packet ver 6, type 1 @ 1572
+Starting Product: @ 1572
+Starting Array 1: num 2 @ 1584
+Parsing packet ver 4, type 4 @ 1590
+Starting Literal @ 1590
+Literal Complete: val 79 @ 1600
+Parsing packet ver 2, type 6 @ 1606
+Starting LT: @ 1618
+Parsing packet ver 2, type 0 @ 1624
+Starting Sum: @ 1624
+Starting Array 1: num 3 @ 1636
+Parsing packet ver 2, type 4 @ 1642
+Starting Literal @ 1642
+Literal Complete: val 14 @ 1647
+Parsing packet ver 6, type 4 @ 1653
+Starting Literal @ 1653
+Literal Complete: val 7 @ 1658
+Parsing packet ver 7, type 4 @ 1664
+Starting Literal @ 1664
+Literal Complete: val 8 @ 1669
+Array Complete 1: num 3 @ 1669
+Sum Complete: val 29 @ 1669
+Parsing packet ver 4, type 0 @ 1675
+Starting Sum: @ 1675
+Starting Array 1: num 3 @ 1687
+Parsing packet ver 2, type 4 @ 1693
+Starting Literal @ 1693
+Literal Complete: val 15 @ 1698
+Parsing packet ver 0, type 4 @ 1704
+Starting Literal @ 1704
+Literal Complete: val 13 @ 1709
+Parsing packet ver 4, type 4 @ 1715
+Starting Literal @ 1715
+Literal Complete: val 2 @ 1720
+Array Complete 1: num 3 @ 1720
+Sum Complete: val 30 @ 1720
+LT Complete: val 1 @ 1720
+Array Complete 1: num 2 @ 1720
+Product Complete: val 79 @ 1720
+Parsing packet ver 0, type 0 @ 1726
+Starting Sum: @ 1726
+Starting Array 1: num 2 @ 1738
+Parsing packet ver 0, type 4 @ 1744
+Starting Literal @ 1744
+Literal Complete: val 3853 @ 1759
+Parsing packet ver 7, type 4 @ 1765
+Starting Literal @ 1765
+Literal Complete: val 1 @ 1770
+Array Complete 1: num 2 @ 1770
+Sum Complete: val 3854 @ 1770
+Parsing packet ver 7, type 4 @ 1776
+Starting Literal @ 1776
+Literal Complete: val 216 @ 1786
+Parsing packet ver 5, type 1 @ 1792
+Starting Product: @ 1792
+Starting Array 1: num 2 @ 1804
+Parsing packet ver 4, type 6 @ 1810
+Starting LT: @ 1822
+Parsing packet ver 1, type 4 @ 1828
+Starting Literal @ 1828
+Literal Complete: val 2500 @ 1843
+Parsing packet ver 3, type 4 @ 1849
+Starting Literal @ 1849
+Literal Complete: val 30285 @ 1869
+LT Complete: val 1 @ 1869
+Parsing packet ver 0, type 4 @ 1875
+Starting Literal @ 1875
+Literal Complete: val -87186408 @ 1915
+Array Complete 1: num 2 @ 1915
+Product Complete: val 4207780888 @ 1915
+Parsing packet ver 4, type 1 @ 1921
+Starting Product: @ 1921
+Starting Array 1: num 1 @ 1933
+Parsing packet ver 1, type 4 @ 1939
+Starting Literal @ 1939
+Literal Complete: val 131 @ 1949
+Array Complete 1: num 1 @ 1949
+Product Complete: val 131 @ 1949
+Parsing packet ver 4, type 1 @ 1955
+Starting Product: @ 1955
+Starting Array 0: len 43 @ 1971
+Parsing packet ver 3, type 4 @ 1977
+Starting Literal @ 1977
+Literal Complete: val 11 @ 1982
+Parsing packet ver 4, type 4 @ 1988
+Starting Literal @ 1988
+Literal Complete: val 250 @ 1998
+Parsing packet ver 5, type 4 @ 2004
+Starting Literal @ 2004
+Literal Complete: val 77 @ 2014
+Array Complete 0: len 43 @ 2014
+Product Complete: val 211750 @ 2014
+Parsing packet ver 4, type 0 @ 2020
+Starting Sum: @ 2020
+Starting Array 0: len 161 @ 2036
+Parsing packet ver 0, type 1 @ 2042
+Starting Product: @ 2042
+Starting Array 1: num 3 @ 2054
+Parsing packet ver 2, type 4 @ 2060
+Starting Literal @ 2060
+Literal Complete: val 11 @ 2065
+Parsing packet ver 2, type 4 @ 2071
+Starting Literal @ 2071
+Literal Complete: val 7 @ 2076
+Parsing packet ver 2, type 4 @ 2082
+Starting Literal @ 2082
+Literal Complete: val 6 @ 2087
+Array Complete 1: num 3 @ 2087
+Product Complete: val 462 @ 2087
+Parsing packet ver 3, type 1 @ 2093
+Starting Product: @ 2093
+Starting Array 0: len 33 @ 2109
+Parsing packet ver 1, type 4 @ 2115
+Starting Literal @ 2115
+Literal Complete: val 9 @ 2120
+Parsing packet ver 3, type 4 @ 2126
+Starting Literal @ 2126
+Literal Complete: val 11 @ 2131
+Parsing packet ver 2, type 4 @ 2137
+Starting Literal @ 2137
+Literal Complete: val 10 @ 2142
+Array Complete 0: len 33 @ 2142
+Product Complete: val 990 @ 2142
+Parsing packet ver 3, type 1 @ 2148
+Starting Product: @ 2148
+Starting Array 0: len 33 @ 2164
+Parsing packet ver 3, type 4 @ 2170
+Starting Literal @ 2170
+Literal Complete: val 15 @ 2175
+Parsing packet ver 1, type 4 @ 2181
+Starting Literal @ 2181
+Literal Complete: val 13 @ 2186
+Parsing packet ver 0, type 4 @ 2192
+Starting Literal @ 2192
+Literal Complete: val 7 @ 2197
+Array Complete 0: len 33 @ 2197
+Product Complete: val 1365 @ 2197
+Array Complete 0: len 161 @ 2197
+Sum Complete: val 2817 @ 2197
+Parsing packet ver 1, type 1 @ 2203
+Starting Product: @ 2203
+Starting Array 0: len 90 @ 2219
+Parsing packet ver 1, type 6 @ 2225
+Starting LT: @ 2241
+Parsing packet ver 0, type 4 @ 2247
+Starting Literal @ 2247
+Literal Complete: val 206 @ 2257
+Parsing packet ver 4, type 4 @ 2263
+Starting Literal @ 2263
+Literal Complete: val 206 @ 2273
+LT Complete: val 0 @ 2273
+Parsing packet ver 5, type 4 @ 2279
+Starting Literal @ 2279
+Literal Complete: val 1531400 @ 2309
+Array Complete 0: len 90 @ 2309
+Product Complete: val 0 @ 2309
+Parsing packet ver 3, type 0 @ 2315
+Starting Sum: @ 2315
+Starting Array 1: num 1 @ 2327
+Parsing packet ver 2, type 4 @ 2333
+Starting Literal @ 2333
+Literal Complete: val 9008 @ 2353
+Array Complete 1: num 1 @ 2353
+Sum Complete: val 9008 @ 2353
+Parsing packet ver 2, type 4 @ 2359
+Starting Literal @ 2359
+Literal Complete: val 140 @ 2369
+Parsing packet ver 6, type 1 @ 2375
+Starting Product: @ 2375
+Starting Array 0: len 120 @ 2391
+Parsing packet ver 4, type 4 @ 2397
+Starting Literal @ 2397
+Literal Complete: val 911281 @ 2422
+Parsing packet ver 2, type 7 @ 2428
+Starting EQ: @ 2444
+Parsing packet ver 0, type 4 @ 2450
+Starting Literal @ 2450
+Literal Complete: val 1715549 @ 2480
+Parsing packet ver 3, type 4 @ 2486
+Starting Literal @ 2486
+Literal Complete: val 522094 @ 2511
+EQ Complete: val 0 @ 2511
+Array Complete 0: len 120 @ 2511
+Product Complete: val 0 @ 2511
+Parsing packet ver 3, type 1 @ 2517
+Starting Product: @ 2517
+Starting Array 0: len 160 @ 2533
+Parsing packet ver 1, type 5 @ 2539
+Starting GT: @ 2555
+Parsing packet ver 1, type 4 @ 2561
+Starting Literal @ 2561
+Literal Complete: val -180295491 @ 2606
+Parsing packet ver 2, type 4 @ 2612
+Starting Literal @ 2612
+Literal Complete: val 11005597 @ 2642
+GT Complete: val 1 @ 2642
+Parsing packet ver 7, type 4 @ 2648
+Starting Literal @ 2648
+Literal Complete: val 1963515789 @ 2693
+Array Complete 0: len 160 @ 2693
+Product Complete: val 1963515789 @ 2693
+Parsing packet ver 0, type 1 @ 2699
+Starting Product: @ 2699
+Starting Array 1: num 2 @ 2711
+Parsing packet ver 7, type 7 @ 2717
+Starting EQ: @ 2729
+Parsing packet ver 0, type 4 @ 2735
+Starting Literal @ 2735
+Literal Complete: val 1022440 @ 2760
+Parsing packet ver 4, type 4 @ 2766
+Starting Literal @ 2766
+Literal Complete: val 2280505 @ 2796
+EQ Complete: val 0 @ 2796
+Parsing packet ver 1, type 4 @ 2802
+Starting Literal @ 2802
+Literal Complete: val 2826 @ 2817
+Array Complete 1: num 2 @ 2817
+Product Complete: val 0 @ 2817
+Parsing packet ver 4, type 2 @ 2823
+Starting Min: @ 2823
+Starting Array 1: num 3 @ 2835
+Parsing packet ver 6, type 4 @ 2841
+Starting Literal @ 2841
+Literal Complete: val 10 @ 2846
+Parsing packet ver 3, type 4 @ 2852
+Starting Literal @ 2852
+Literal Complete: val 11 @ 2857
+Parsing packet ver 3, type 4 @ 2863
+Starting Literal @ 2863
+Literal Complete: val 3 @ 2868
+Array Complete 1: num 3 @ 2868
+Min Complete: val 3 @ 2868
+Parsing packet ver 1, type 3 @ 2874
+Starting Max: @ 2874
+Starting Array 1: num 5 @ 2886
+Parsing packet ver 7, type 4 @ 2892
+Starting Literal @ 2892
+Literal Complete: val 64758 @ 2912
+Parsing packet ver 5, type 4 @ 2918
+Starting Literal @ 2918
+Literal Complete: val 50 @ 2928
+Parsing packet ver 0, type 4 @ 2934
+Starting Literal @ 2934
+Literal Complete: val 62 @ 2944
+Parsing packet ver 3, type 4 @ 2950
+Starting Literal @ 2950
+Literal Complete: val 18680 @ 2970
+Parsing packet ver 3, type 4 @ 2976
+Starting Literal @ 2976
+Literal Complete: val 33287 @ 2996
+Array Complete 1: num 5 @ 2996
+Max Complete: val 64758 @ 2996
+Parsing packet ver 1, type 3 @ 3002
+Starting Max: @ 3002
+Starting Array 1: num 1 @ 3014
+Parsing packet ver 2, type 4 @ 3020
+Starting Literal @ 3020
+Literal Complete: val 243132675 @ 3055
+Array Complete 1: num 1 @ 3055
+Max Complete: val 243132675 @ 3055
+Parsing packet ver 1, type 4 @ 3061
+Starting Literal @ 3061
+Literal Complete: val 207 @ 3071
+Parsing packet ver 7, type 4 @ 3077
+Starting Literal @ 3077
+Literal Complete: val 249 @ 3087
+Parsing packet ver 3, type 1 @ 3093
+Starting Product: @ 3093
+Starting Array 0: len 70 @ 3109
+Parsing packet ver 5, type 4 @ 3115
+Starting Literal @ 3115
+Literal Complete: val 186 @ 3125
+Parsing packet ver 6, type 5 @ 3131
+Starting GT: @ 3147
+Parsing packet ver 0, type 4 @ 3153
+Starting Literal @ 3153
+Literal Complete: val 28 @ 3163
+Parsing packet ver 4, type 4 @ 3169
+Starting Literal @ 3169
+Literal Complete: val 28 @ 3179
+GT Complete: val 0 @ 3179
+Array Complete 0: len 70 @ 3179
+Product Complete: val 0 @ 3179
+Parsing packet ver 1, type 2 @ 3185
+Starting Min: @ 3185
+Starting Array 1: num 1 @ 3197
+Parsing packet ver 7, type 2 @ 3203
+Starting Min: @ 3203
+Starting Array 0: len 393 @ 3219
+Parsing packet ver 5, type 3 @ 3225
+Starting Max: @ 3225
+Starting Array 0: len 371 @ 3241
+Parsing packet ver 3, type 0 @ 3247
+Starting Sum: @ 3247
+Starting Array 1: num 1 @ 3259
+Parsing packet ver 4, type 3 @ 3265
+Starting Max: @ 3265
+Starting Array 1: num 1 @ 3277
+Parsing packet ver 2, type 2 @ 3283
+Starting Min: @ 3283
+Starting Array 1: num 1 @ 3295
+Parsing packet ver 5, type 2 @ 3301
+Starting Min: @ 3301
+Starting Array 1: num 1 @ 3313
+Parsing packet ver 1, type 0 @ 3319
+Starting Sum: @ 3319
+Starting Array 1: num 1 @ 3331
+Parsing packet ver 4, type 0 @ 3337
+Starting Sum: @ 3337
+Starting Array 0: len 259 @ 3353
+Parsing packet ver 5, type 2 @ 3359
+Starting Min: @ 3359
+Starting Array 1: num 1 @ 3371
+Parsing packet ver 2, type 1 @ 3377
+Starting Product: @ 3377
+Starting Array 1: num 1 @ 3389
+Parsing packet ver 4, type 0 @ 3395
+Starting Sum: @ 3395
+Starting Array 1: num 1 @ 3407
+Parsing packet ver 3, type 0 @ 3413
+Starting Sum: @ 3413
+Starting Array 0: len 183 @ 3429
+Parsing packet ver 2, type 1 @ 3435
+Starting Product: @ 3435
+Starting Array 1: num 1 @ 3447
+Parsing packet ver 0, type 0 @ 3453
+Starting Sum: @ 3453
+Starting Array 1: num 1 @ 3465
+Parsing packet ver 0, type 1 @ 3471
+Starting Product: @ 3471
+Starting Array 0: len 125 @ 3487
+Parsing packet ver 5, type 2 @ 3493
+Starting Min: @ 3493
+Starting Array 0: len 103 @ 3509
+Parsing packet ver 7, type 3 @ 3515
+Starting Max: @ 3515
+Starting Array 1: num 1 @ 3527
+Parsing packet ver 2, type 0 @ 3533
+Starting Sum: @ 3533
+Starting Array 0: len 63 @ 3549
+Parsing packet ver 6, type 3 @ 3555
+Starting Max: @ 3555
+Starting Array 0: len 41 @ 3571
+Parsing packet ver 6, type 4 @ 3577
+Starting Literal @ 3577
+Literal Complete: val 256058865 @ 3612
+Array Complete 0: len 41 @ 3612
+Max Complete: val 256058865 @ 3612
+Array Complete 0: len 63 @ 3612
+Sum Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Max Complete: val 256058865 @ 3612
+Array Complete 0: len 103 @ 3612
+Min Complete: val 256058865 @ 3612
+Array Complete 0: len 125 @ 3612
+Product Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Sum Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Product Complete: val 256058865 @ 3612
+Array Complete 0: len 183 @ 3612
+Sum Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Sum Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Product Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Min Complete: val 256058865 @ 3612
+Array Complete 0: len 259 @ 3612
+Sum Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Sum Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Min Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Min Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Max Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Sum Complete: val 256058865 @ 3612
+Array Complete 0: len 371 @ 3612
+Max Complete: val 256058865 @ 3612
+Array Complete 0: len 393 @ 3612
+Min Complete: val 256058865 @ 3612
+Array Complete 1: num 1 @ 3612
+Min Complete: val 256058865 @ 3612
+Parsing packet ver 6, type 4 @ 3618
+Starting Literal @ 3618
+Literal Complete: val 4 @ 3623
+Parsing packet ver 6, type 2 @ 3629
+Starting Min: @ 3629
+Starting Array 1: num 4 @ 3641
+Parsing packet ver 0, type 4 @ 3647
+Starting Literal @ 3647
+Literal Complete: val 190 @ 3657
+Parsing packet ver 1, type 4 @ 3663
+Starting Literal @ 3663
+Literal Complete: val 1414908125 @ 3703
+Parsing packet ver 3, type 4 @ 3709
+Starting Literal @ 3709
+Literal Complete: val 260612466 @ 3744
+Parsing packet ver 3, type 4 @ 3750
+Starting Literal @ 3750
+Literal Complete: val 200 @ 3760
+Array Complete 1: num 4 @ 3760
+Min Complete: val 190 @ 3760
+Parsing packet ver 1, type 1 @ 3766
+Starting Product: @ 3766
+Starting Array 0: len 179 @ 3782
+Parsing packet ver 1, type 5 @ 3788
+Starting GT: @ 3804
+Parsing packet ver 3, type 0 @ 3810
+Starting Sum: @ 3810
+Starting Array 0: len 33 @ 3826
+Parsing packet ver 1, type 4 @ 3832
+Starting Literal @ 3832
+Literal Complete: val 3 @ 3837
+Parsing packet ver 5, type 4 @ 3843
+Starting Literal @ 3843
+Literal Complete: val 14 @ 3848
+Parsing packet ver 6, type 4 @ 3854
+Starting Literal @ 3854
+Literal Complete: val 7 @ 3859
+Array Complete 0: len 33 @ 3859
+Sum Complete: val 24 @ 3859
+Parsing packet ver 2, type 0 @ 3865
+Starting Sum: @ 3865
+Starting Array 1: num 3 @ 3877
+Parsing packet ver 5, type 4 @ 3883
+Starting Literal @ 3883
+Literal Complete: val 10 @ 3888
+Parsing packet ver 4, type 4 @ 3894
+Starting Literal @ 3894
+Literal Complete: val 5 @ 3899
+Parsing packet ver 7, type 4 @ 3905
+Starting Literal @ 3905
+Literal Complete: val 4 @ 3910
+Array Complete 1: num 3 @ 3910
+Sum Complete: val 19 @ 3910
+GT Complete: val 1 @ 3910
+Parsing packet ver 5, type 4 @ 3916
+Starting Literal @ 3916
+Literal Complete: val -951572820 @ 3961
+Array Complete 0: len 179 @ 3961
+Product Complete: val 3343394476 @ 3961
+Parsing packet ver 0, type 1 @ 3967
+Starting Product: @ 3967
+Starting Array 0: len 157 @ 3983
+Parsing packet ver 7, type 0 @ 3989
+Starting Sum: @ 3989
+Starting Array 1: num 3 @ 4001
+Parsing packet ver 3, type 4 @ 4007
+Starting Literal @ 4007
+Literal Complete: val 12 @ 4012
+Parsing packet ver 0, type 4 @ 4018
+Starting Literal @ 4018
+Literal Complete: val 9 @ 4023
+Parsing packet ver 5, type 4 @ 4029
+Starting Literal @ 4029
+Literal Complete: val 2 @ 4034
+Array Complete 1: num 3 @ 4034
+Sum Complete: val 23 @ 4034
+Parsing packet ver 1, type 0 @ 4040
+Starting Sum: @ 4040
+Starting Array 0: len 33 @ 4056
+Parsing packet ver 5, type 4 @ 4062
+Starting Literal @ 4062
+Literal Complete: val 9 @ 4067
+Parsing packet ver 5, type 4 @ 4073
+Starting Literal @ 4073
+Literal Complete: val 7 @ 4078
+Parsing packet ver 4, type 4 @ 4084
+Starting Literal @ 4084
+Literal Complete: val 10 @ 4089
+Array Complete 0: len 33 @ 4089
+Sum Complete: val 26 @ 4089
+Parsing packet ver 1, type 0 @ 4095
+Starting Sum: @ 4095
+Starting Array 1: num 3 @ 4107
+Parsing packet ver 5, type 4 @ 4113
+Starting Literal @ 4113
+Literal Complete: val 2 @ 4118
+Parsing packet ver 3, type 4 @ 4124
+Starting Literal @ 4124
+Literal Complete: val 15 @ 4129
+Parsing packet ver 3, type 4 @ 4135
+Starting Literal @ 4135
+Literal Complete: val 12 @ 4140
+Array Complete 1: num 3 @ 4140
+Sum Complete: val 29 @ 4140
+Array Complete 0: len 157 @ 4140
+Product Complete: val 17342 @ 4140
+Parsing packet ver 5, type 2 @ 4146
+Starting Min: @ 4146
+Starting Array 0: len 11 @ 4162
+Parsing packet ver 3, type 4 @ 4168
+Starting Literal @ 4168
+Literal Complete: val 6 @ 4173
+Array Complete 0: len 11 @ 4173
+Min Complete: val 6 @ 4173
+Parsing packet ver 2, type 1 @ 4179
+Starting Product: @ 4179
+Starting Array 0: len 121 @ 4195
+Parsing packet ver 6, type 5 @ 4201
+Starting GT: @ 4213
+Parsing packet ver 6, type 4 @ 4219
+Starting Literal @ 4219
+Literal Complete: val 148406040 @ 4254
+Parsing packet ver 5, type 4 @ 4260
+Starting Literal @ 4260
+Literal Complete: val 9890 @ 4280
+GT Complete: val 1 @ 4280
+Parsing packet ver 7, type 4 @ 4286
+Starting Literal @ 4286
+Literal Complete: val 7035560 @ 4316
+Array Complete 0: len 121 @ 4316
+Product Complete: val 7035560 @ 4316
+Parsing packet ver 5, type 1 @ 4322
+Starting Product: @ 4322
+Starting Array 0: len 111 @ 4338
+Parsing packet ver 0, type 5 @ 4344
+Starting GT: @ 4356
+Parsing packet ver 3, type 4 @ 4362
+Starting Literal @ 4362
+Literal Complete: val 12517644 @ 4392
+Parsing packet ver 2, type 4 @ 4398
+Starting Literal @ 4398
+Literal Complete: val 12517644 @ 4428
+GT Complete: val 0 @ 4428
+Parsing packet ver 7, type 4 @ 4434
+Starting Literal @ 4434
+Literal Complete: val 3738 @ 4449
+Array Complete 0: len 111 @ 4449
+Product Complete: val 0 @ 4449
+Parsing packet ver 3, type 0 @ 4455
+Starting Sum: @ 4455
+Starting Array 1: num 3 @ 4467
+Parsing packet ver 0, type 4 @ 4473
+Starting Literal @ 4473
+Literal Complete: val 114 @ 4483
+Parsing packet ver 6, type 4 @ 4489
+Starting Literal @ 4489
+Literal Complete: val 251 @ 4499
+Parsing packet ver 5, type 4 @ 4505
+Starting Literal @ 4505
+Literal Complete: val 1282283954 @ 4550
+Array Complete 1: num 3 @ 4550
+Sum Complete: val 1282284319 @ 4550
+Parsing packet ver 0, type 2 @ 4556
+Starting Min: @ 4556
+Starting Array 0: len 130 @ 4572
+Parsing packet ver 7, type 4 @ 4578
+Starting Literal @ 4578
+Literal Complete: val 303918 @ 4603
+Parsing packet ver 0, type 4 @ 4609
+Starting Literal @ 4609
+Literal Complete: val 22 @ 4619
+Parsing packet ver 5, type 4 @ 4625
+Starting Literal @ 4625
+Literal Complete: val 17611 @ 4645
+Parsing packet ver 0, type 4 @ 4651
+Starting Literal @ 4651
+Literal Complete: val 252789721 @ 4686
+Parsing packet ver 3, type 4 @ 4692
+Starting Literal @ 4692
+Literal Complete: val 160 @ 4702
+Array Complete 0: len 130 @ 4702
+Min Complete: val 22 @ 4702
+Parsing packet ver 4, type 1 @ 4708
+Starting Product: @ 4708
+Starting Array 1: num 4 @ 4720
+Parsing packet ver 1, type 4 @ 4726
+Starting Literal @ 4726
+Literal Complete: val 194 @ 4736
+Parsing packet ver 0, type 4 @ 4742
+Starting Literal @ 4742
+Literal Complete: val 52 @ 4752
+Parsing packet ver 4, type 4 @ 4758
+Starting Literal @ 4758
+Literal Complete: val 93 @ 4768
+Parsing packet ver 3, type 4 @ 4774
+Starting Literal @ 4774
+Literal Complete: val 153 @ 4784
+Array Complete 1: num 4 @ 4784
+Product Complete: val 143542152 @ 4784
+Parsing packet ver 1, type 1 @ 4790
+Starting Product: @ 4790
+Starting Array 0: len 139 @ 4806
+Parsing packet ver 1, type 6 @ 4812
+Starting LT: @ 4828
+Parsing packet ver 7, type 0 @ 4834
+Starting Sum: @ 4834
+Starting Array 1: num 3 @ 4846
+Parsing packet ver 3, type 4 @ 4852
+Starting Literal @ 4852
+Literal Complete: val 4 @ 4857
+Parsing packet ver 4, type 4 @ 4863
+Starting Literal @ 4863
+Literal Complete: val 4 @ 4868
+Parsing packet ver 3, type 4 @ 4874
+Starting Literal @ 4874
+Literal Complete: val 14 @ 4879
+Array Complete 1: num 3 @ 4879
+Sum Complete: val 22 @ 4879
+Parsing packet ver 4, type 0 @ 4885
+Starting Sum: @ 4885
+Starting Array 0: len 33 @ 4901
+Parsing packet ver 1, type 4 @ 4907
+Starting Literal @ 4907
+Literal Complete: val 6 @ 4912
+Parsing packet ver 6, type 4 @ 4918
+Starting Literal @ 4918
+Literal Complete: val 11 @ 4923
+Parsing packet ver 6, type 4 @ 4929
+Starting Literal @ 4929
+Literal Complete: val 13 @ 4934
+Array Complete 0: len 33 @ 4934
+Sum Complete: val 30 @ 4934
+LT Complete: val 1 @ 4934
+Parsing packet ver 2, type 4 @ 4940
+Starting Literal @ 4940
+Literal Complete: val 15 @ 4945
+Array Complete 0: len 139 @ 4945
+Product Complete: val 15 @ 4945
+Parsing packet ver 7, type 1 @ 4951
+Starting Product: @ 4951
+Starting Array 0: len 101 @ 4967
+Parsing packet ver 0, type 6 @ 4973
+Starting LT: @ 4985
+Parsing packet ver 4, type 4 @ 4991
+Starting Literal @ 4991
+Literal Complete: val 60183 @ 5011
+Parsing packet ver 5, type 4 @ 5017
+Starting Literal @ 5017
+Literal Complete: val 60183 @ 5037
+LT Complete: val 0 @ 5037
+Parsing packet ver 1, type 4 @ 5043
+Starting Literal @ 5043
+Literal Complete: val 744346 @ 5068
+Array Complete 0: len 101 @ 5068
+Product Complete: val 0 @ 5068
+Parsing packet ver 3, type 1 @ 5074
+Starting Product: @ 5074
+Starting Array 0: len 146 @ 5090
+Parsing packet ver 6, type 7 @ 5096
+Starting EQ: @ 5108
+Parsing packet ver 4, type 0 @ 5114
+Starting Sum: @ 5114
+Starting Array 1: num 3 @ 5126
+Parsing packet ver 7, type 4 @ 5132
+Starting Literal @ 5132
+Literal Complete: val 14 @ 5137
+Parsing packet ver 7, type 4 @ 5143
+Starting Literal @ 5143
+Literal Complete: val 3 @ 5148
+Parsing packet ver 0, type 4 @ 5154
+Starting Literal @ 5154
+Literal Complete: val 14 @ 5159
+Array Complete 1: num 3 @ 5159
+Sum Complete: val 31 @ 5159
+Parsing packet ver 3, type 0 @ 5165
+Starting Sum: @ 5165
+Starting Array 1: num 3 @ 5177
+Parsing packet ver 0, type 4 @ 5183
+Starting Literal @ 5183
+Literal Complete: val 10 @ 5188
+Parsing packet ver 7, type 4 @ 5194
+Starting Literal @ 5194
+Literal Complete: val 6 @ 5199
+Parsing packet ver 6, type 4 @ 5205
+Starting Literal @ 5205
+Literal Complete: val 6 @ 5210
+Array Complete 1: num 3 @ 5210
+Sum Complete: val 22 @ 5210
+EQ Complete: val 0 @ 5210
+Parsing packet ver 2, type 4 @ 5216
+Starting Literal @ 5216
+Literal Complete: val 40355 @ 5236
+Array Complete 0: len 146 @ 5236
+Product Complete: val 0 @ 5236
+Parsing packet ver 6, type 3 @ 5242
+Starting Max: @ 5242
+Starting Array 0: len 83 @ 5258
+Parsing packet ver 4, type 4 @ 5264
+Starting Literal @ 5264
+Literal Complete: val 10889982 @ 5294
+Parsing packet ver 6, type 4 @ 5300
+Starting Literal @ 5300
+Literal Complete: val 4427926 @ 5330
+Parsing packet ver 5, type 4 @ 5336
+Starting Literal @ 5336
+Literal Complete: val 8 @ 5341
+Array Complete 0: len 83 @ 5341
+Max Complete: val 10889982 @ 5341
+Parsing packet ver 3, type 2 @ 5347
+Starting Min: @ 5347
+Starting Array 1: num 2 @ 5359
+Parsing packet ver 3, type 4 @ 5365
+Starting Literal @ 5365
+Literal Complete: val 2331 @ 5380
+Parsing packet ver 5, type 4 @ 5386
+Starting Literal @ 5386
+Literal Complete: val 255 @ 5396
+Array Complete 1: num 2 @ 5396
+Min Complete: val 255 @ 5396
+Array Complete 1: num 53 @ 5396
+Sum Complete: val 20240424709 @ 5396
+Part 2: (0.000688): 20240424709
