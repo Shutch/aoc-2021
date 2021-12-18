@@ -1,0 +1,21 @@
+Part 1
+2145 (too low)
+8911 (correct)
+
+Part 2
+
+
+    enum simresults result;
+    int hitsum = 0;
+
+    for( int vx = minvx; vx <= maxvx; vx++ ) {
+        for( int vy = -maxvy; vy <= maxvy; vy++ ) {
+            result = runsim(vx, maxvy, xmin, xmax, ymin, ymax);
+            if( result == Hit ) { hitsum++; }
+        }
+    }
+    // finding max height from maxvy
+    // summation of integers from 0 to maxvy = (maxvy^2 + maxvy)/2
+
+    ans = hitsum;
+    return ans;
