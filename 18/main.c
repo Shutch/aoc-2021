@@ -574,6 +574,11 @@ int parttwo (char *filename) {
         }
     }
 
+    // cleaning up the remaining nodes for valgrind
+    for( int i = 0; i < headcount; i++ ) {
+        calculatemagnitude(heads[i]);
+    }
+
     ans = maxmagnitude;
     return ans;
 }
