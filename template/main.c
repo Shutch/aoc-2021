@@ -6,7 +6,6 @@
 #include <time.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include "helpers.h"
 
 int partone (char *filename) {
     int ans = -1;
