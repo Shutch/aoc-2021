@@ -498,7 +498,7 @@ int parttwo (char *filename) {
             currpair->right.p = rightpair;
             rightpair->parent = currpair;
 
-            printpair(currpair);
+            //printpair(currpair);
             // reduction
             while( 1 ) {
                 //printpair(currpair);
@@ -518,9 +518,9 @@ int parttwo (char *filename) {
                 break;
             }
 
-            printpair(currpair);
+            //printpair(currpair);
             magnitude = calculatemagnitude(currpair);
-            printf("Total magnitude of %d and %d: %d\n", i, j, magnitude);
+            //printf("Total magnitude of %d and %d: %d\n", i, j, magnitude);
             if( magnitude > maxmagnitude ) {
                 maxmagnitude = magnitude;
             }
@@ -545,7 +545,7 @@ int parttwo (char *filename) {
             currpair->right.p = rightpair;
             rightpair->parent = currpair;
 
-            printpair(currpair);
+            //printpair(currpair);
             // reduction
             while( 1 ) {
                 //printpair(currpair);
@@ -565,9 +565,9 @@ int parttwo (char *filename) {
                 break;
             }
 
-            printpair(currpair);
+            //printpair(currpair);
             magnitude = calculatemagnitude(currpair);
-            printf("Total magnitude of %d and %d: %d\n", i, j, magnitude);
+            //printf("Total magnitude of %d and %d: %d\n", i, j, magnitude);
             if( magnitude > maxmagnitude ) {
                 maxmagnitude = magnitude;
             }
