@@ -4,11 +4,38 @@
 #include <math.h>
 #include <limits.h>
 #include <time.h>
+#include <stdint.h>
 #include "helpers.h"
 
+void dfs(int a, int b, uint64_t *elementcount, int pairs[100][100],
+         int depth, int maxdepth, uint64_t pairmemos[100][100][100]) {
+    if( depth == maxdepth/2 ) {
+        //printf("Memo time %c %c\n", a, b);
+        for( int i = 0; i < 100; i++ ) {
+            elementcount[i] += pairmemos[a][b][i];
+        }
+    } else if( depth < maxdepth ) {
+        //printf("DFS time %c %c\n", a, b);
+        int c = pairs[a][b];
+        elementcount[c]++;
+        dfs(a, c, elementcount, pairs, depth+1, maxdepth, pairmemos);
+        dfs(c, b, elementcount, pairs, depth+1, maxdepth, pairmemos);
+    }
+}
 
-int partone (char *filename) {
-    int ans = -1;
+void precomputedfs(int a, int b, uint64_t *elementcount, int pairs[100][100],
+                   int depth, int maxdepth, uint64_t pairmemos[100][100][100]) {
+    if( depth < maxdepth ) {
+        //printf("DFS time %c %c\n", a, b);
+        int c = pairs[a][b];
+        elementcount[c]++;
+        precomputedfs(a, c, elementcount, pairs, depth+1, maxdepth, pairmemos);
+        precomputedfs(c, b, elementcount, pairs, depth+1, maxdepth, pairmemos);
+    }
+}
+
+uint64_t partone (char *filename) {
+    uint64_t ans = -1;
 
     // open input file
     FILE *fp = fopen(filename, "r");
@@ -21,70 +48,59 @@ int partone (char *filename) {
     int linesize = 100;
     char line[linesize];
     char *template;
-    static int elementcount[100] = { };
-    static char oldsequence[20000] = { };
-    int oldsequencecount = 0;
+    static uint64_t elementcount[100] = { };
+    static char sequence[20] = { };
+    int sequencecount = 0;
 
     // ascii codes A = 65, Z = 90
     fgets(line, linesize, fp);
     template = strtok(line, "\n");
     for( int i = 0; i < strlen(template); i++ ) {
         elementcount[template[i]]++;
-        oldsequence[i] = template[i];
-        oldsequencecount++;
+        sequence[i] = template[i];
+        sequencecount++;
     }
-    //printf("Template: %s\n", template);
-
-    //int maxpolymerlength = strlen(template);
-    //for( int i = 1; i <= numsteps; i++ ) {
-    //    printf("Max length at step %d: %d\n", i, maxpolymerlength);
-    //    maxpolymerlength += (maxpolymerlength - 1);
-    //}
 
     fgets(line, linesize, fp); // blank line
 
     // pair insertions
     char a, b, c;  // AB -> C
-    static char pairs[100][100] = { };  // lookup table for A and B
+    static int pairs[100][100] = { };  // lookup table for A and B
+    static uint64_t pairmemos[100][100][100] = { }; // memoization table for 20 levels
+    static int pairlist[200][2] = { };
+    int numpairs = 0;
 
     while( fgets(line, linesize, fp) != NULL ) {
         sscanf( line, "%c%c -> %c\n", &a, &b, &c);
         pairs[a][b] = c;
         //printf("New pair added: %c and %c -> %c\n", a, b, pairs[a][b]);
+        pairlist[numpairs][0] = a;
+        pairlist[numpairs][1] = b;
+        numpairs++;
     }
 
     // close file
     fclose(fp);
 
-    static char newsequence[20000] = { };
-    int newsequencecount = 0;
-    char insert;
-    char *oldptr = oldsequence;
-    char *newptr = newsequence;
+    // precomputing 5 levels of elementcounts for each pair
+    const int maxdepth = 10;
+    int precompdepth = maxdepth / 2;
+    for( int i = 0; i < numpairs; i++ ) {
+        char a = pairlist[i][0];
+        char b = pairlist[i][1];
+        //printf("Precomputing %d levels of %c and %c\n", precompdepth, a, b);
+        precomputedfs(a, b, pairmemos[a][b], pairs, 0, precompdepth, pairmemos);
+    }
 
-    int numsteps = 10;
-    for( int s = 1; s <= numsteps; s++ ) {
-        //printf("Starting step %d\n", s);
-        for( int i = 1; i < oldsequencecount; i++ ) {
-            insert = pairs[oldptr[i-1]][oldptr[i]];
-            if( insert != 0 ) {
-                newptr[newsequencecount] = oldptr[i-1]; newsequencecount++;
-                newptr[newsequencecount] = insert; newsequencecount++;
-                elementcount[insert]++;
-                newptr[newsequencecount] = oldptr[i];
-            } else { fprintf(stderr, "Implement no sequence found logic.\n"); }
-        }
-        oldsequencecount = newsequencecount + 1;
-        //printf("Sequence length after step %d: %d\n", s, oldsequencecount);
-        newsequencecount = 0;
-        char *temp = oldptr;
-        oldptr = newptr;
-        newptr = temp;
+    // depth first character summing
+    for( int s = 0; s < sequencecount-1; s++ ) {
+        //printf("Running %d levels of %c and %c\n", maxdepth, a, b);
+        dfs(sequence[s], sequence[s+1], elementcount, pairs, 0, maxdepth, pairmemos);
     }
 
     // Finding least and most element count
-    int min = INT_MAX; int max = INT_MIN;
-    for( int i = 0; i <= 100; i++ ) {
+    uint64_t min = UINT64_MAX; uint64_t max = 0;
+    for( int i = 0; i < 100; i++ ) {
         if( (elementcount[i] < min) && (elementcount[i] != 0) ) {
             min = elementcount[i];
         }
@@ -98,8 +114,8 @@ int partone (char *filename) {
     return ans;
 }
 
-int parttwo (char *filename) {
-    int ans = -1;
+uint64_t parttwo (char *filename) {
+    uint64_t ans = -1;
 
     // open input file
     FILE *fp = fopen(filename, "r");
@@ -112,71 +128,58 @@ int parttwo (char *filename) {
     int linesize = 100;
     char line[linesize];
     char *template;
-    static int elementcount[100] = { };
-    static char oldsequence[20000] = { };
-    int oldsequencecount = 0;
+    static uint64_t elementcount[100] = { };
+    static char sequence[20] = { };
+    int sequencecount = 0;
 
     // ascii codes A = 65, Z = 90
     fgets(line, linesize, fp);
     template = strtok(line, "\n");
     for( int i = 0; i < strlen(template); i++ ) {
         elementcount[template[i]]++;
-        oldsequence[i] = template[i];
-        oldsequencecount++;
-    }
-    //printf("Template: %s\n", template);
-
-    long long maxpolymerlength = strlen(template);
-    maxpolymerlength = 2;
-    for( int i = 0; i <= 40; i++ ) {
-        printf("Max length at step %d: %lld\n", i, maxpolymerlength);
-        maxpolymerlength += (maxpolymerlength - 1);
+        sequence[i] = template[i];
+        sequencecount++;
     }
 
     fgets(line, linesize, fp); // blank line
 
     // pair insertions
     char a, b, c;  // AB -> C
-    static char pairs[100][100] = { };  // lookup table for A and B
+    static int pairs[100][100] = { };  // lookup table for A and B
+    static uint64_t pairmemos[100][100][100] = { }; // memoization table for 20 levels
+    static int pairlist[200][2];
+    int numpairs = 0;
 
     while( fgets(line, linesize, fp) != NULL ) {
         sscanf( line, "%c%c -> %c\n", &a, &b, &c);
         pairs[a][b] = c;
         //printf("New pair added: %c and %c -> %c\n", a, b, pairs[a][b]);
+        pairlist[numpairs][0] = a;
+        pairlist[numpairs][1] = b;
+        numpairs++;
     }
 
     // close file
     fclose(fp);
 
-    static char newsequence[20000] = { };
-    int newsequencecount = 0;
-    char insert;
-    char *oldptr = oldsequence;
-    char *newptr = newsequence;
+    // precomputing 20 levels of elementcounts for each pair
+    const int maxdepth = 40;
+    int precompdepth = maxdepth / 2;
+    for( int i = 0; i < numpairs; i++ ) {
+        char a = pairlist[i][0];
+        char b = pairlist[i][1];
+        precomputedfs(a, b, pairmemos[a][b], pairs, 0, precompdepth, pairmemos);
+    }
 
-    int numsteps = 10;
-    for( int s = 1; s <= numsteps; s++ ) {
-        //printf("Starting step %d\n", s);
-        for( int i = 1; i < oldsequencecount; i++ ) {
-            insert = pairs[oldptr[i-1]][oldptr[i]];
-            if( insert != 0 ) {
-                newptr[newsequencecount] = oldptr[i-1]; newsequencecount++;
-                newptr[newsequencecount] = insert; newsequencecount++;
-                elementcount[insert]++;
-                newptr[newsequencecount] = oldptr[i];
-            } else { fprintf(stderr, "Implement no sequence found logic.\n"); }
-        }
-        oldsequencecount = newsequencecount + 1;
-        //printf("Sequence length after step %d: %d\n", s, oldsequencecount);
-        newsequencecount = 0;
-        char *temp = oldptr;
-        oldptr = newptr;
-        newptr = temp;
+    // depth first character summing
+    for( int s = 0; s < sequencecount-1; s++ ) {
+        //printf("Starting dfs for chars %d and %d\n", s, s+1);
+        dfs(sequence[s], sequence[s+1], elementcount, pairs, 0, maxdepth, pairmemos);
     }
 
     // Finding least and most element count
-    int min = INT_MAX; int max = INT_MIN;
-    for( int i = 0; i <= 100; i++ ) {
+    uint64_t min = UINT64_MAX; uint64_t max = 0;
+    for( int i = 0; i < 100; i++ ) {
         if( (elementcount[i] < min) && (elementcount[i] != 0) ) {
             min = elementcount[i];
         }
@@ -185,7 +188,7 @@ int parttwo (char *filename) {
         }
     }
 
-    printf("Max: %d, Min: %d\n", max, min);
+    //printf("Max: %d, Min: %d\n", max, min);
     ans = max-min;
     return ans;
 }
@@ -206,11 +209,11 @@ int main( int argc, char *argv[] ) {
 
     clock_t start = clock();
 
-    int p1 = partone(filename);
+    uint64_t p1 = partone(filename);
     clock_t p1time = clock();
-    printf("Part 1 (%lf): %d\n", (double)(p1time - start) / CLOCKS_PER_SEC, p1);
+    printf("Part 1 (%lf): %lu\n", (double)(p1time - start) / CLOCKS_PER_SEC, p1);
 
-    int p2 = parttwo(filename);
+    uint64_t p2 = parttwo(filename);
     clock_t p2time = clock();
-    printf("Part 2: (%lf): %d\n", (double)(p2time - start) / CLOCKS_PER_SEC, p2);
+    printf("Part 2: (%lf): %lu\n", (double)(p2time - start) / CLOCKS_PER_SEC, p2);
 }
