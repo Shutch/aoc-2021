@@ -34,6 +34,7 @@ int parseinput(FILE *fp, Scanner *scanners) {
             scanners[numscanners].numbeacons++;
             //printf("Added %d, %d, %d to scanner %d beacon %d\n", x, y, z, numscanners, beaconnum);
         } // next scanner
+        scanners[numscanners].locked = false;
         numscanners++;
     }
     return( numscanners );
@@ -55,12 +56,12 @@ bool contains3(int val[3], int list[200][5], int n) {
     return( false );
 }
 
-// This is actually distance^2 to keep it ints
+// This is actually (x1-x2) * (y1-y2) * (z1-z2) to keep it an integer and keep signs
+// basically just serves as a unique identifier
 int calcdist( int c1[3], int c2[3] ) {
     int dist = 0;
     for( int i = 0; i < 3; i++ ) {
-        dist += (c1[i]-c2[i])*(c1[i]-c2[i]);
-    }
+        dist += (c1[i]-c2[i]) * (c1[i]-c2[i]); }
     return( dist );
 }
 
@@ -70,7 +71,7 @@ int calcdist( int c1[3], int c2[3] ) {
 void rotscanner(Scanner *s, int transform[3], int signs[3]) {
     int temp[3];
     for( int i = 0; i < s->numbeacons; i++ ) {
-        printf("Transformed from (%d, %d, %d)", s->beacons[i][0], s->beacons[i][1], s->beacons[i][2]);
+        //printf("Transformed from (%d, %d, %d)", s->beacons[i][0], s->beacons[i][1], s->beacons[i][2]);
 
         // transform (axis swap)
         temp[0] = s->beacons[i][transform[0]];
@@ -85,7 +86,7 @@ void rotscanner(Scanner *s, int transform[3], int signs[3]) {
         s->beacons[i][1] *= signs[1];
         s->beacons[i][2] *= signs[2];
 
-        printf(" to (%d, %d, %d)\n", s->beacons[i][0], s->beacons[i][1], s->beacons[i][2]);
+        //printf(" to (%d, %d, %d)\n", s->beacons[i][0], s->beacons[i][1], s->beacons[i][2]);
     }
 }
 
@@ -121,12 +122,15 @@ void alignscanner(Scanner *s1, Scanner *s2, int matches[66][6], int nummatches) 
         if( tmatch ) {
             // calculating sign flips
             int signs[3];
-            signs[0] = ((matches[11][0] * temp[0]) > 0) ? 1 : -1;
-            signs[1] = ((matches[11][1] * temp[1]) > 0) ? 1 : -1;
-            signs[2] = ((matches[11][2] * temp[2]) > 0) ? 1 : -1;
+            temp[0] = matches[0][transforms[t]];
+            temp[1] = matches[0][transforms[t+1]];
+            temp[2] = matches[0][transforms[t+2]];
+            signs[0] = ((matches[0][0] * temp[0]) > 0) ? 1 : -1;
+            signs[1] = ((matches[0][1] * temp[1]) > 0) ? 1 : -1;
+            signs[2] = ((matches[0][2] * temp[2]) > 0) ? 1 : -1;
             int transform[] = {transforms[t]-3, transforms[t+1]-3, transforms[t+2]-3};
-            printf("Match on all %d with t: (%d, %d, %d) and s: (%d, %d, %d)\n",
-                   nummatches, transform[0], transform[1], transform[2], signs[0], signs[1], signs[2]);
+            //printf("Match on all %d with t: (%d, %d, %d) and s: (%d, %d, %d)\n",
+            //       nummatches, transform[0], transform[1], transform[2], signs[0], signs[1], signs[2]);
 
             // rotating all beacon points
             rotscanner(s2, transform, signs);
@@ -141,29 +145,30 @@ void alignscanner(Scanner *s1, Scanner *s2, int matches[66][6], int nummatches) 
 //
 // Once s2 is aligned, finds the position of s2 relative to the origin
 bool matchdist(Scanner *s1, Scanner *s2) {
-    int numbeaconmatch = 0;
     // 12 matches, 3 axis distances from s1 and s2
     // {s1x1-s1x2, s1y1-s1y2, s1z1-s1z2, s2x1-s2x2, s2y1-s2y2, s2z1-s2z2}
     int beaconmatches[66][6] = { };
     int beaconids[24] = { };
-    int numbeaconids = 0;
-    for( int i1 = 0; i1 < s1->numbeacons-1; i1++ ) {
-        for( int j1 = i1 + 1; j1 < s1->numbeacons; j1++ ) {
-            for( int i2 = 0; i2 < s2->numbeacons-1; i2++ ) {
-                for( int j2 = i2 + 1; j2 < s2->numbeacons; j2++ ) {
+    for( int i1 = 0; i1 < s1->numbeacons; i1++ ) {
+        for( int i2 = 0; i2 < s2->numbeacons; i2++ ) {
+            int numbeaconids = 0;
+            int numbeaconmatch = 0;
+            // printf("Now checking %d vs %d\n", i1, i2);
+            for( int j1 = 0; j1 < s1->numbeacons; j1++ ) {
+                for( int j2 = 0; j2 < s2->numbeacons; j2++ ) {
                     int dist1 = s1->distances[i1][j1];
                     int dist2 = s2->distances[i2][j2];
-                    if( dist1 == dist2 ) {
+                    if( (dist1 == dist2) && (dist1 != 0) && (dist2 != 0) ) {
                         // adding beacon ids
                         if( !(contains(i1, beaconids, numbeaconids)) ) {
                             beaconids[numbeaconids] = i1;
                             numbeaconids++;
-                            printf("Unique beacon %d added\n", i1);
+                            //printf("Unique beacon %d added\n", i1);
                         }
                         if( !(contains(j1, beaconids, numbeaconids)) ) {
                             beaconids[numbeaconids] = j1;
                             numbeaconids++;
-                            printf("Unique beacon %d added\n", j1);
+                            //printf("Unique beacon %d added\n", j1);
                         }
                         // adding beacon coordinates
                         for( int a = 0; a < 3; a++ ) {
@@ -171,10 +176,10 @@ bool matchdist(Scanner *s1, Scanner *s2) {
                             beaconmatches[numbeaconmatch][a+3] = s2->beacons[i2][a] - s2->beacons[j2][a];
                         }
                         numbeaconmatch++;
-                        printf("Dist %d match between (%d, %d) and (%d, %d), Total Matches: %d\n",
-                               dist1, i1, j1, i2, j2, numbeaconmatch);
+                        //printf("Dist %d match between (%d, %d) and (%d, %d), Total Matches: %d\n",
+                        //       dist1, i1, j1, i2, j2, numbeaconmatch);
                         if( numbeaconids >= 12 ) {
-                            printf("%d beacons, %d matches found, starting beacon rotations\n", numbeaconids, numbeaconmatch);
+                            //printf("%d beacons, %d matches found, starting beacon rotations\n", numbeaconids, numbeaconmatch);
                             alignscanner(s1, s2, beaconmatches, numbeaconmatch);
 
                             // finding s2 position
@@ -182,8 +187,19 @@ bool matchdist(Scanner *s1, Scanner *s2) {
                             s2->pos[1] = (s1->beacons[i1][1] - s2->beacons[i2][1]) + s1->pos[1];
                             s2->pos[2] = (s1->beacons[i1][2] - s2->beacons[i2][2]) + s1->pos[2];
 
-                            printf("s2 pos set to %d, %d, %d\n", s2->pos[0], s2->pos[1], s2->pos[2]);
-                            printf("Locking s2\n");
+                            //printf("S1 Beacon (%d, %d, %d), S2 Beacon (%d, %d, %d)\n",
+                            //      s1->beacons[i1][0], s1->beacons[i1][1], s1->beacons[i1][2],
+                            //      s2->beacons[i2][0], s2->beacons[i2][1], s2->beacons[i2][2]);
+
+                            //printf("S1 Pos (%d, %d, %d), S1-S2 offset (%d, %d, %d)\n",
+                            //       s1->pos[0], s1->pos[1], s1->pos[2], 
+                            //       (s1->beacons[i1][0] - s2->beacons[i2][0]),
+                            //       (s1->beacons[i1][1] - s2->beacons[i2][1]),
+                            //       (s1->beacons[i1][2] - s2->beacons[i2][2]));
+                                   
+
+                            //printf("*** Scanner pos set to %d, %d, %d\n", s2->pos[0], s2->pos[1], s2->pos[2]);
+                            //printf("Locking s2\n");
                             s2->locked = true;
                             return true;
                         }
@@ -222,8 +238,8 @@ int partone (char *filename) {
     // distance^2 is (x1-x2)^2 + (y1-y2)^2 + (z1-z2)^2
     // This will form a lower diagonal matrix in the 2D 'distances' array
     for( int s = 0; s < numscanners; s++ ) {
-        for( int i = 0; i < scanners[s].numbeacons-1; i++ ) {
-            for( int j = i+1; j < scanners[s].numbeacons; j++ ) {
+        for( int i = 0; i < scanners[s].numbeacons; i++ ) {
+            for( int j = 0; j < scanners[s].numbeacons; j++ ) {
                 int dist = calcdist(scanners[s].beacons[i], scanners[s].beacons[j]);
                 scanners[s].distances[i][j] = dist;
                 //printf("%d to %d: %d\n", i, j, dist);
@@ -265,7 +281,7 @@ int partone (char *filename) {
         for( int s1 = 0; s1 < numscanners; s1++ ) {
             for( int s2 = 0; s2 < numscanners; s2++ ) {
                 if( (s1 != s2) && (scanners[s1].locked) && !(scanners[s2].locked) ) {
-                    printf("Starting distance matching between s%d and s%d\n", s1, s2);
+                    //printf("Starting distance matching between s%d and s%d\n", s1, s2);
                     if( matchdist(&scanners[s1], &scanners[s2]) ) {
                         numlockedscanners++;
                     }
@@ -273,15 +289,15 @@ int partone (char *filename) {
             }
         }
     }
-    printf("All scanners locked\n");
+    //printf("All scanners locked\n");
 
     // Once all of the stations are locked then a comparison between the beacon
     // coordinates (adjusted for scanner location) can be made. The number of unique
     // coordinates among all scanners is total number of beacons
     // The distance matching, rotating, and translating should only occur between a
     // locked station and an unlocked station
-    int allbeacons[200][5]; // s#, b#, x, y, z
-    int uniquebeacons[200][5]; // s#, b#, x, y, z
+    int allbeacons[1500][5]; // s#, b#, x, y, z
+    int uniquebeacons[1500][5]; // s#, b#, x, y, z
     int numallbeacons = 0;
     int numuniquebeacons = 0;
     for( int s = 0; s < numscanners; s++ ) {
@@ -297,9 +313,11 @@ int partone (char *filename) {
             allbeacons[numallbeacons][4] = temp[2];
             numallbeacons++;
             if( !(contains3(temp, uniquebeacons, numuniquebeacons)) ) {
-                uniquebeacons[numuniquebeacons][0] = temp[0];
-                uniquebeacons[numuniquebeacons][1] = temp[1];
-                uniquebeacons[numuniquebeacons][2] = temp[2];
+                uniquebeacons[numuniquebeacons][0] = s;
+                uniquebeacons[numuniquebeacons][1] = b;
+                uniquebeacons[numuniquebeacons][2] = temp[0];
+                uniquebeacons[numuniquebeacons][3] = temp[1];
+                uniquebeacons[numuniquebeacons][4] = temp[2];
                 numuniquebeacons++;
             }
         }
@@ -308,15 +326,16 @@ int partone (char *filename) {
     qsort(allbeacons, numallbeacons, sizeof(allbeacons[0]), sortbeacons);
     qsort(uniquebeacons, numuniquebeacons, sizeof(uniquebeacons[0]), sortbeacons);
 
-    for( int b = 0; b < numuniquebeacons; b++ ) {
-        printf("s%d  b%d  (%d, %d, %d)\n",
-               uniquebeacons[b][0],
-               uniquebeacons[b][1],
-               uniquebeacons[b][2],
-               uniquebeacons[b][3],
-               uniquebeacons[b][4]);
-    }
-    printf("All beacons: %d, Unique beacons: %d\n", numallbeacons, numuniquebeacons);
+    //for( int b = 0; b < numuniquebeacons; b++ ) {
+    //    printf("s%d  b%d  (%d, %d, %d)\n",
+    //           uniquebeacons[b][0],
+    //           uniquebeacons[b][1],
+    //           uniquebeacons[b][2],
+    //           uniquebeacons[b][3],
+    //           uniquebeacons[b][4]);
+    //}
+    //printf("All beacons: %d, Unique beacons: %d\n", numallbeacons, numuniquebeacons);
+    ans = numuniquebeacons;
 
     return ans;
 }
@@ -332,9 +351,53 @@ int parttwo (char *filename) {
     }
 
     // read file
+    static Scanner scanners[50] = { };
+    int numscanners = parseinput(fp, scanners);
 
     // close file
     fclose(fp);
+
+    for( int s = 0; s < numscanners; s++ ) {
+        for( int i = 0; i < scanners[s].numbeacons; i++ ) {
+            for( int j = 0; j < scanners[s].numbeacons; j++ ) {
+                int dist = calcdist(scanners[s].beacons[i], scanners[s].beacons[j]);
+                scanners[s].distances[i][j] = dist;
+                //printf("%d to %d: %d\n", i, j, dist);
+            }
+        }
+    }
+
+
+    // setting scanner 0 as the origin and locking it
+    scanners[0].pos[0] = 0; scanners[0].pos[1] = 0; scanners[0].pos[2] = 0;
+    scanners[0].locked = true;
+    int numlockedscanners = 1;
+
+    while( numlockedscanners < numscanners ) {
+        for( int s1 = 0; s1 < numscanners; s1++ ) {
+            for( int s2 = 0; s2 < numscanners; s2++ ) {
+                if( (s1 != s2) && (scanners[s1].locked) && !(scanners[s2].locked) ) {
+                    //printf("Starting distance matching between s%d and s%d\n", s1, s2);
+                    if( matchdist(&scanners[s1], &scanners[s2]) ) {
+                        numlockedscanners++;
+                    }
+                }
+            }
+        }
+    }
+    //printf("All scanners locked\n");
+
+    int maxdist = 0;
+    for( int i = 0; i < numscanners-1; i++ ) {
+        for( int j = i+1; j < numscanners; j++ ) {
+            int mandist = abs(scanners[i].pos[0] - scanners[j].pos[0])
+                        + abs(scanners[i].pos[1] - scanners[j].pos[1])
+                        + abs(scanners[i].pos[2] - scanners[j].pos[2]);
+            if( mandist > maxdist ) { maxdist = mandist; }
+        }
+    }
+
+    ans = maxdist;
 
     return ans;
 }
