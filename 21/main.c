@@ -33,7 +33,8 @@ int movepiece(int startspace, int nummoves) {
 
 void playturn(int p1space, int p2space, int p1score, int p2score,
               int turn, Game memo[11][11][21][21][2]) {
-    int maxscore = 2;
+    int maxscore = 21;
+    bool gamelogging = false;
 
     Game *currstate = &memo[p1space][p2space][p1score][p2score][turn];
 
@@ -51,28 +52,36 @@ void playturn(int p1space, int p2space, int p1score, int p2score,
                     int nextscore = p1score + nextspace;
                     if( nextscore >= maxscore ) {
                         currstate->p1wins++;
-                        printf("Player 1 win (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                               nextspace, p2space, nextscore, p2score, turn,
-                               currstate->p1wins, currstate->p2wins);
+                        if( gamelogging ) {
+                            printf("Player 1 win (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                   nextspace, p2space, nextscore, p2score, turn,
+                                   currstate->p1wins, currstate->p2wins);
+                        }
                     } else {
                         int nextturn = 1;
                         Game *nextstate = &memo[nextspace][p2space][nextscore][p2score][nextturn];
                         if( nextstate->complete ) { // check memo for answer
                             currstate->p1wins += nextstate->p1wins;
                             currstate->p2wins += nextstate->p2wins;
-                            printf("Memo used (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                                   nextspace, p2space, nextscore, p2score, nextturn,
-                                   currstate->p1wins, currstate->p2wins);
+                            if( gamelogging ) {
+                                printf("Memo used (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                       nextspace, p2space, nextscore, p2score, nextturn,
+                                       nextstate->p1wins, nextstate->p2wins);
+                            }
                         } else { // not memoized yet, continue to calculate
-                            printf("Diving deeper (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                                   nextspace, p2space, nextscore, p2score, nextturn,
-                                   currstate->p1wins, currstate->p2wins);
+                            if( gamelogging ) {
+                                printf("Diving deeper (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                       nextspace, p2space, nextscore, p2score, nextturn,
+                                       nextstate->p1wins, nextstate->p2wins);
+                            }
                             playturn(nextspace, p2space, nextscore, p2score, nextturn, memo);
                             currstate->p1wins += nextstate->p1wins;
                             currstate->p2wins += nextstate->p2wins;
-                            printf("Back from (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                                   nextspace, p2space, nextscore, p2score, nextturn,
-                                   currstate->p1wins, currstate->p2wins);
+                            if( gamelogging ) {
+                                printf("Back from (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                       nextspace, p2space, nextscore, p2score, nextturn,
+                                       nextstate->p1wins, nextstate->p2wins);
+                            }
                         }
                     }
                 } else if( turn == 1 ) {
@@ -80,28 +89,36 @@ void playturn(int p1space, int p2space, int p1score, int p2score,
                     int nextscore = p2score + nextspace;
                     if( nextscore >= maxscore ) {
                         currstate->p2wins++;
-                        printf("Player 2 win (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                               p1space, nextspace, p1score, nextscore, turn,
-                               currstate->p1wins, currstate->p2wins);
+                        if( gamelogging ) {
+                            printf("Player 2 win (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                   p1space, nextspace, p1score, nextscore, turn,
+                                   currstate->p1wins, currstate->p2wins);
+                        }
                     } else {
                         int nextturn = 0;
                         Game *nextstate = &memo[p1space][nextspace][p1score][nextscore][nextturn];
                         if( nextstate->complete ) { // check memo for answer
                             currstate->p1wins += nextstate->p1wins;
                             currstate->p2wins += nextstate->p2wins;
-                            printf("Memo used (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                                   p1space, nextspace, p1score, nextscore, nextturn,
-                                   currstate->p1wins, currstate->p2wins);
+                            if( gamelogging ) {
+                                printf("Memo used (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                       p1space, nextspace, p1score, nextscore, nextturn,
+                                       nextstate->p1wins, nextstate->p2wins);
+                            }
                         } else { // not memoized yet, continue to calculate
-                            printf("Diving deeper (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                                   p1space, nextspace, p1score, nextscore, nextturn,
-                                   currstate->p1wins, currstate->p2wins);
+                            if( gamelogging ) {
+                                printf("Diving deeper (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                       p1space, nextspace, p1score, nextscore, nextturn,
+                                       nextstate->p1wins, nextstate->p2wins);
+                            }
                             playturn(p1space, nextspace, p1score, nextscore, nextturn, memo);
                             currstate->p1wins += nextstate->p1wins;
                             currstate->p2wins += nextstate->p2wins;
-                            printf("Back from (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-                                   p1space, nextspace, p1score, nextscore, nextturn,
-                                   currstate->p1wins, currstate->p2wins);
+                            if( gamelogging ) {
+                                printf("Back from (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+                                       p1space, nextspace, p1score, nextscore, nextturn,
+                                       nextstate->p1wins, nextstate->p2wins);
+                            }
                         }
                     }
                 } else { fprintf(stderr, "Turn %d not recognized\n", turn); }
@@ -109,9 +126,11 @@ void playturn(int p1space, int p2space, int p1score, int p2score,
         }
     }
     currstate->complete = true;
-    printf("Game state complete (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
-           p1space, p2space, p1score, p2score, turn,
-           currstate->p1wins, currstate->p2wins);
+    if( gamelogging ) {
+        printf("Game state complete (Spaces: %d, %d, Scores: %d, %d, Turn: %d, Wins: %lu, %lu)\n",
+               p1space, p2space, p1score, p2score, turn,
+               currstate->p1wins, currstate->p2wins);
+    }
 }
 
 uint64_t playgame(int p1space, int p2space) {
@@ -144,6 +163,8 @@ uint64_t playgame(int p1space, int p2space) {
 
     uint64_t p1wins = memo[p1space][p2space][p1score][p2score][turn].p1wins;
     uint64_t p2wins = memo[p1space][p2space][p1score][p2score][turn].p2wins;
+    
+    //printf("P1: %lu, P2: %lu\n", p1wins, p2wins);
 
     if( p1wins > p2wins ) {
         return( p1wins );
@@ -214,7 +235,7 @@ int partone (char *filename) {
 }
 
 uint64_t parttwo (char *filename) {
-    int ans = -1;
+    uint64_t ans = -1;
 
     // open input file
     FILE *fp = fopen(filename, "r");
