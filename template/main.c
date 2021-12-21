@@ -58,11 +58,11 @@ int main( int argc, char *argv[] ) {
     }
 
     clock_t start = clock();
-
     int p1 = partone(filename);
     clock_t p1time = clock();
     printf("Part 1 (%lf): %d\n", (double)(p1time - start) / CLOCKS_PER_SEC, p1);
 
+    start = clock();
     int p2 = parttwo(filename);
     clock_t p2time = clock();
     printf("Part 2: (%lf): %d\n", (double)(p2time - start) / CLOCKS_PER_SEC, p2);
