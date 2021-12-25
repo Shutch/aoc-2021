@@ -1,0 +1,516 @@
+Part 1
+
+Default all 9s answer: 10500769
+Default all 0s answer: 6223474
+Input digits (left to right, msb to lsb)
+0 - increase by 456976 each
+1 - increase by 17576 each
+2 - increase by 676 each
+3 - increase by 26 each
+4 - anything less than 9 decreases by 1501917794 to -1491417025
+5 - decreases by a lot each time (9-8 =  1501918470 to -1491417701)
+6 - no effect
+7 - no effect
+8 - no effect
+9 - no effect
+10 - no effect
+11 - anything less than 9 decreases by -262519036 to 273019805
+12
+13 - decrease by 1 each
+
+The processing of each digit is similar and builds on previous digits
+0. The latest input is taken in to w
+1. The running total (z) is copied to x.
+2. x is MOD 26
+3. x is added to by a random constant, 
+4. x is compared not equal to the latest input
+5. z is divided by either 1 or 26.
+6. y is set to 25
+7. y is multiplied by x (either 1 if not equal to w or 0)
+8. y is increased by 1 (to either 26 or 1)
+9. z is multiplied by y
+10. y is set to w + a constant
+11. y is multiplied by y (either 1 if not equal to w or 0)
+12. z is increased by y
+
+There are 3 places Z can change for each input digit
+z is divided by 26 in the following input indexes:
+    5
+    7
+    8
+    10
+    11
+    12
+    13
+z is multiplied by y = 26 if x is not equal to w
+z is increased by w + constant if x is not equal to w
+
+There is an x and y constant that gets added in each input, plus the 1 or 26 z division
+index   x               y               z
+------------------------------------------------------
+0       15  (o or p)    13  (m or n)    1  
+1       10  (j or k)    16  (p or q)    1
+2       12  (l or m)    2   (b or c)    1
+3       10  (j or k)    8   (h or i)    1
+4       14  (n or o)    11  (k or l)    1
+5       -11 (  or  )    6   (f or g)    26
+6       10  (  or  )    12  (l or m)    1
+7       -16 (  or  )    2   (b or c)    26
+8       -9  (  or  )    2   (b or c)    26
+9       11  (  or  )    15  (o or p)    1
+10      -8  (  or  )    1   (a or b)    26
+11      -8  (  or  )    10  (j or k)    26
+12      -10 (  or  )    14  (n or m)    26
+13      -9  (  or  )    10  (j or k)    26
+SUM     
+
+Links:
+ 0  13
+ 1  12
+ 2  11
+ 3   8
+ 4   5
+ 6   7
+ 8   3
+ 9  10
+ 11  2
+ 12  1
+ 13  0
+
+ Order of fixing:
+ 4 5
+ 6 7
+ 3 8
+ 9 10
+ 2 11
+ 1 12
+ 0 13
+
+
+26 makes me think of some kind of code involving the alphabet
+since the first increment to Z in index 0 is unavoidable, the
+trick seems to be balancing out indexes with positive and negative
+constants and/or minimizing the increments/decrements to the sum (z)
+
+The z -> x, x % 26, x + constant seems like a letter shift around the alphabet
+
+negative x constants are alwys paired with z = 26.
+
+7 are positive and 7 are negative
+
+Printing output at the start of each inp
+all 0s:
+00000000000000
+INP 0: 0 [0, 0, 0,           0]
+INP 1: 0 [0, 1, 13,         13]
+INP 2: 0 [0, 1, 16,        354]
+INP 3: 0 [0, 1, 2,        9206]
+INP 4: 0 [0, 1, 8,      239364]
+INP 5: 0 [0, 1, 11,    6223475]
+INP 6: 0 [0, 0, 0,      239364]
+INP 7: 0 [0, 1, 12,    6223476]
+INP 8: 0 [0, 1, 2,     6223466]
+INP 9: 0 [0, 1, 2,     6223466]
+INP 10: 0 [0, 1, 15, 161810131]
+INP 11: 0 [0, 1, 1,  161810117]
+INP 12: 0 [0, 1, 10, 161810126]
+INP 13: 0 [0, 0, 0,    6223466]
+
+55555555555555
+INP 0: 5 [0, 0, 0,           0]
+INP 1: 5 [5, 1, 18,         18]
+INP 2: 5 [5, 1, 21,        489]
+INP 3: 5 [5, 1, 7,       12721]
+INP 4: 5 [5, 1, 13,     330759]
+INP 5: 5 [5, 1, 16,    8599750]
+INP 6: 5 [5, 0, 0,      330759]
+INP 7: 5 [5, 1, 17,    8599751]
+INP 8: 5 [5, 1, 7,     8599741]
+INP 9: 5 [5, 1, 7,     8599741]
+INP 10: 5 [5, 1, 20, 223593286]
+INP 11: 5 [5, 1, 6,  223593272]
+INP 12: 5 [5, 1, 15, 223593281]
+INP 13: 5 [5, 0, 0,    8599741]
+
+99999999999999
+INP 0: 9 [0, 0, 0,           0]
+INP 1: 9 [9, 1, 22,         22]
+INP 2: 9 [9, 1, 25,        597]
+INP 3: 9 [9, 1, 11,      15533]
+INP 4: 9 [9, 1, 17      403875]
+INP 5: 9 [9, 1, 20,   10500770]
+INP 6: 9 [9, 0, 0,      403875]
+INP 7: 9 [9, 1, 21,   10500771]
+INP 8: 9 [9, 1, 11,   10500761]
+INP 9: 9 [9, 1, 11,   10500761]
+INP 10: 9 [9, 1, 24, 273019810]
+INP 11: 9 [9, 1, 10, 273019796]
+INP 12: 9 [9, 1, 19, 273019805]
+INP 13: 9 [9, 0, 0,   10500761]
+
+12345678987654
+INP 0: 1 [0, 0, 0,             0]
+INP 1: 2 [1, 1, 14,           14]
+INP 2: 3 [2, 1, 18,          382]
+INP 3: 4 [3, 1, 5,          9937]
+INP 4: 5 [4, 1, 12,       258374]
+INP 5: 6 [5, 1, 16,      6717740]
+INP 6: 7 [6, 1, 12,      6717736]
+INP 7: 8 [7, 1, 19,    174661155]
+INP 8: 9 [8, 1, 10,    174661146]
+INP 9: 8 [9, 1, 11,    174661147]
+INP 10: 7 [8, 1, 23,  4541189845]
+INP 11: 6 [7, 1, 8,   4541189830]
+INP 12: 5 [6, 1, 16,  4541189838]
+INP 13: 4 [5, 1, 19,  4541189841]
+
+98765432123456
+INP 0: 9 [0, 0, 0,             0]
+INP 1: 8 [9, 1, 22,           22]
+INP 2: 7 [8, 1, 24,          596]
+INP 3: 6 [7, 1, 9,         15505]
+INP 4: 5 [6, 1, 14,       403144]
+INP 5: 4 [5, 1, 16,     10481760]
+INP 6: 3 [4, 1, 10,     10481754]
+INP 7: 2 [3, 1, 15,    272525619]
+INP 8: 1 [2, 1, 4,     272525608]
+INP 9: 2 [1, 1, 3,     272525607]
+INP 10: 3 [2, 1, 17,  7085665799]
+INP 11: 4 [3, 1, 4,   7085665786]
+INP 12: 5 [4, 1, 14,  7085665796]
+INP 13: 6 [5, 1, 19,  7085665801]
+
+y is the y constant from the previous unit + w
+
+Finding the difference between each subsequent z value:
+
+ 0  |  00000000000000      5555555555555      99999999999999      12345678987654        98765432123456
+ 1  |  13                  18                 22                  14                    22                            
+ 2  |  341                 471                575                 368                   574
+ 3  |  8852                12232              14936               9555                  14909
+ 4  |  230158              318038             388342              248437                387639
+ 5  |  5984111             8268991            10096895            6459366               10078616
+ 6  | -5984111            -8268991           -10096895            -4                    -6
+ 7  |  5984112             8268992            10096896            167943419             262043865
+ 8  | -10                 -10                -10                  -9                    -11
+ 9  |  0                   0                  0                   1                     -1
+10  |  155586665           214993545          262519049           4366528698            6813140192
+11  | -14                 -14                -14                  -15                   -13                          
+12  |  9                   9                  9                   8                     10                           
+13  | -155586660          -214993540         -262519044           3                     5                            
+
+
+Notes:
+0 through 5 increase z by larger and larger amounts
+6 seems very dependent on the modulus and div but generally decreases in value as the inp increases
+5 and 6 are opposite when they are equal to each other
+8 is -10 + w[8] - w[7]
+9 is w[8] - w[9]
+
+
+The problem description talks about conversion into binary (base 2) using an
+ADD x(0) z
+MOD x 2
+DIV z 2
+
+combination. Now the most significant bit from z is in x and z is half the size
+
+These sequences seem to use a base 26 and either remove the most significant bit or
+leave it depending on if z is divided by 26 or 1 respectively
+
+if (z % 26) + constant == w, then z * 1 rather than a large constant
+
+mod 26 takes the least significant bit, dividing by 26 removes it
+
+This is adding up a base 26 number and then negating it.
+
+Any z/26 will be negated if (z % 26) + constant != w, since y = 26 and multiply z * y
+If (z % 26) + constant == w, x = 0 and y = 1 which keeps the reduction by one digit
+
+Level
+---------
+0:  0                         12
+1:    1                    11
+2:      2           8   10
+3:        3   5   7   9
+4:          4   6
+
+0 ---------
+inp w       w = [0]
+mul x 0     x = 0
+add x z     x = 0
+mod x 26    x = 0
+div z 1     z = 0
+add x 15    x = 15
+eql x w     x = (15 == [0]) ? 1 : 0      if 15 == w, then 1, else 0
+eql x 0     x = (0 == 0) ? 1 : 0        if x == 0, then 1, so if x != w then 1
+mul y 0     y = 0
+add y 25    y = 25
+mul y x     y = 25 * 1
+add y 1     y = 26
+mul z y     z = 0
+mul y 0     y = 0
+add y w     y = [0]
+add y 13    y = [0] + 13
+mul y x     y = [0] + 13 * (1)
+add z y     13 + [0]
+
+1 ---------
+inp w       w = [1]
+mul x 0     x = 0
+add x z     x = 13 + [0]
+mod x 26    x = (13 + [0]) % 26 = (13 + [0])
+div z 1     z = 13 + [0]
+add x 10    x = (13 + [0]) + 10 = 23 + [0]
+eql x w     23 + [0] == [1]
+eql x 0     x = 1
+mul y 0     y = 0
+add y 25    y = 25
+mul y x     y = 25 * 1 = 25
+add y 1     y = 25 + 1 = 26
+mul z y     z = (13 + [0]) * 26
+mul y 0     y = 0
+add y w     y = 26 + [1]
+add y 16    y = 26 + [1] + 16 = 42 + [1]
+mul y x     y = (42 + [1]) * 1
+add z y     z = (13 + [0]) * 26 + 42 + [1]
+
+2 ---------
+inp w
+mul x 0
+add x z     x = 0
+mod x 26    x = 0
+div z 1     z = 0
+add x 12    x = 12
+eql x w     
+eql x 0     x = 0
+mul y 0     y = 0
+add y 25    y = 25
+mul y x     y = 0
+add y 1     y = 1
+mul z y     z = 0
+mul y 0     y = 0
+add y w     y = [2]
+add y 2     y = [2] + 2
+mul y x     y = 0
+add z y     z = 0
+
+3 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 10
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 8
+mul y x
+add z y
+
+4 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 14
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 11
+mul y x
+add z y
+
+5 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -11
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 6
+mul y x
+add z y
+
+6 ---------
+inp w
+mul x 0     x = 0
+add x z     x = z
+mod x 26    x = z % 26
+div z 1     z = z
+add x 10    x = (z % 26) + 10
+eql x w     
+eql x 0
+mul y 0     y = 0
+add y 25    y = 25
+mul y x     
+add y 1
+mul z y
+mul y 0     y = 0
+add y w     y = w
+add y 12    y = w + 12
+mul y x     y
+add z y     
+
+7 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -16
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 2
+mul y x
+add z y
+
+8 ---------
+inp w       
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -9
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 2
+mul y x
+add z y
+
+9 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 1
+add x 11
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 15
+mul y x
+add z y
+
+10 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -8
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 1
+mul y x
+add z y
+
+11 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -8
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 10
+mul y x
+add z y
+
+12 ---------
+inp w
+mul x 0
+add x z
+mod x 26
+div z 26
+add x -10
+eql x w
+eql x 0
+mul y 0
+add y 25
+mul y x
+add y 1
+mul z y
+mul y 0
+add y w
+add y 14
+mul y x
+add z y
+
+13 ---------
+inp w       w = [13]
+mul x 0     x = 0
+add x z     x = z
+mod x 26    x = x % 26
+div z 26
+add x -9    x = (x % 26) - 9
+eql x w     x = ((x % 26) - 9
+eql x 0     x = (x == 0) ? 1 : 0
+mul y 0     y = 0
+add y 25    y = 25
+mul y x     y = 25 * x
+add y 1     y = (25 * x) + 1
+mul z y     z = z * (25 * x) + 1
+mul y 0     y = 0
+add y w     y = w
+add y 10    y = w+10
+mul y x     
+add z y     z+y = 1
