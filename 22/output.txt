@@ -1,0 +1,27 @@
+Created AABB (10, 12) (10, 12) (10, 12)
+Created AABB (10, 11) (10, 12) (10, 12)
+Created AABB (11, 12) (10, 12) (10, 12)
+Removed AABB (10, 12) (10, 12) (10, 12)
+Created AABB (11, 12) (10, 11) (10, 12)
+Created AABB (11, 12) (11, 12) (10, 12)
+Removed AABB (11, 12) (10, 12) (10, 12)
+Created AABB (11, 12) (11, 12) (10, 11)
+Created AABB (11, 12) (11, 12) (11, 12)
+Removed AABB (11, 12) (11, 12) (10, 12)
+Removed AABB (11, 12) (11, 12) (11, 12)
+Created AABB (11, 13) (11, 13) (11, 13)
+Created AABB (10, 11) (10, 11) (10, 12)
+Created AABB (10, 11) (11, 12) (10, 12)
+Removed AABB (10, 11) (10, 12) (10, 12)
+Created AABB (10, 11) (10, 11) (10, 11)
+Created AABB (10, 11) (10, 11) (11, 12)
+Removed AABB (10, 11) (10, 11) (10, 12)
+Removed AABB (10, 11) (10, 11) (10, 11)
+
+
+Created AABB (11, 12) (10, 11) (10, 12) -> 2
+Created AABB (11, 12) (11, 12) (10, 11) -> 1
+Created AABB (11, 13) (11, 13) (11, 13) -> 8
+Created AABB (10, 11) (11, 12) (10, 12) -> 2
+Created AABB (10, 11) (10, 11) (11, 12) -> 1
+                                          14
