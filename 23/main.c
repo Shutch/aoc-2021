@@ -98,7 +98,7 @@ int paths[27][4] = {
 
     {8,  24, -1, -1},    // 23
     {23, 25, -1, -1},    // 24
-    {24, 26, -1, -1},    // 25
+    {24, 26, -1, -1},    // 25https://twitter.com/willjmeddings/status/1473563266832117761?s=21
     {25, -1, -1, -1},    // 26
 };
 
@@ -116,24 +116,6 @@ typedef struct {
     int score;
 } Board;
 
-typedef struct {
-    uint8_t a1 : 5;
-    uint8_t a2 : 5;
-    uint8_t a3 : 5;
-    uint8_t a4 : 5;
-    uint8_t b1 : 5;
-    uint8_t b2 : 5;
-    uint8_t b3 : 5;
-    uint8_t b4 : 5;
-    uint8_t c1 : 5;
-    uint8_t c2 : 5;
-    uint8_t c3 : 5;
-    uint8_t c4 : 5;
-    uint8_t d1 : 5;
-    uint8_t d2 : 5;
-    uint8_t d3 : 5;
-    uint8_t d4 : 5;
-} State;
 
 void printboard(Board *board) {
 
@@ -453,7 +435,7 @@ int calcmovecost(char piece, char board[19], int startspace, int finalspace, int
 }
 
 // runs the game to completion, recursively
-void rungame(Board *board, int *lowscore, State *memo) {
+void rungame(Board *board, int *lowscore) {
     int numpieces = 16;
     int numspaces = 27;
     int numvalidmoves = 0;
@@ -509,7 +491,7 @@ void rungame(Board *board, int *lowscore, State *memo) {
                                 debug_print("Locking %c at %d\n", nextboard->pieces[i].type, nextboard->pieces[i].pos);
                                 nextboard->pieces[i].locked = true;
                             }
-                            rungame(nextboard, lowscore, memo);
+                            rungame(nextboard, lowscore);
                         }
                     }
                 }
@@ -599,14 +581,9 @@ int parttwo (char *filename) {
     // close file
     fclose(fp);
 
-    uint64_t memosize = 15460335891000;
-    State *memo = (State*) malloc(memosize * sizeof(State));
-
     //run games recursively
     int lowscore = INT_MAX;
-    rungame(&board, &lowscore, memo);
-
-    free(memo);
+    rungame(&board, &lowscore);
 
     ans = lowscore;
     return ans;
