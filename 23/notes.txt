@@ -1,0 +1,38 @@
+Attempts
+--------
+Pt 1:
+10609 (too high)
+10607 (right)
+
+
+Pt 2:
+
+
+Scratchpad:
+0
+........... 
+  B B D D   
+  D C B A 
+  D B A C 
+  C A A C 
+
+..........D 
+  B B D .   
+  D C B A 
+  D B A C 
+  C A A C 
+
+..........D 
+  B . D .   
+  D C B A 
+  D B A C 
+  C A A C 
+
+
+
+A.........D 
+  . B . D   
+  D B . A 
+  D B A C 
+  C B A C 
+
